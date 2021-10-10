@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/id_lineara_info_dem"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/design_demenagement">
+
+    <LinearLayout
+        android:id="@+id/top"
+        android:layout_width="match_parent"
+        android:layout_height="124dp"
+        android:gravity="center_vertical|center_horizontal"
+        android:orientation="vertical">
+
+
+        <TextView
+
+            android:layout_width="319dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Informations sur le déménageur"
+            android:textColor="@color/colorbeige"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/list_info_dem"
+        android:layout_width="match_parent"
+        android:layout_height="244dp" />
+    <LinearLayout
+        android:id="@+id/loginLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/env_dem_devis"
+            android:layout_width="263dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
+            android:background="@color/colorbeige"
+            android:fontFamily="monospace"
+            android:text="Envoyer demande de devis de déménagement"
+            android:textColor="@color/colorwhite"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            tools:ignore="TextContrastCheck" />
+
+        <Button
+            android:id="@+id/text_env_msg_dem"
+            android:layout_width="137dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
+            android:background="@color/colorbeige"
+            android:fontFamily="monospace"
+            android:text="Envoyer Message"
+            android:textColor="@color/colorwhite"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            tools:ignore="TextContrastCheck" />
+
+
+    </LinearLayout>
+</LinearLayout>

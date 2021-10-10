@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <LinearLayout
+        android:id="@+id/frameLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/design_demenagement"
+        android:orientation="vertical">
+
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="match_parent"
+            android:layout_height="86dp"
+            app:srcCompat="@drawable/message" />
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:orientation="vertical"></LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/top1"
+            android:layout_width="match_parent"
+            android:layout_height="276dp"
+            android:gravity="center_vertical|center_horizontal"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/id_sujet_msg_dem"
+                android:layout_width="317dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center"
+                android:background="@drawable/edit_text_normal"
+                android:ems="10"
+                android:hint="Sujet"
+                android:inputType="textPersonName"
+                android:minHeight="48dp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="15dp"
+                android:orientation="vertical"></LinearLayout>
+
+            <EditText
+                android:id="@+id/id_contenu_msg_dem"
+                android:layout_width="319dp"
+                android:layout_height="119dp"
+                android:background="@drawable/edit_text_normal"
+                android:ems="10"
+                android:hint="Contenu"
+
+                android:inputType="textMultiLine"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/loginLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <Button
+                android:id="@+id/env_msg_dem"
+                android:layout_width="127dp"
+                android:layout_height="37dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:background="@color/colorbeige"
+                android:fontFamily="monospace"
+                android:text="Envoyer"
+                android:textColor="@color/colorwhite"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                tools:ignore="TextContrastCheck" />
+        </LinearLayout>
+    </LinearLayout>
+    </LinearLayout>

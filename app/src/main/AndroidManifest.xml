@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.app_tuni_dmnager">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/logocolor"
+        android:label="Tunidéménager"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.APP_Tuni_Déménager">
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".accueil_tuni_demenager"> </activity>
+        <activity android:name=".infodemenageur"> </activity>
+        <activity android:name=".envoyer_demande_devis_dem"> </activity>
+        <activity android:name=".envoyer_message"> </activity>
+        <activity android:name=".connexion"> </activity>
+        <activity android:name=".inscription"> </activity>
+        <activity android:name=".profil_client"> </activity>
+        <activity android:name=".devis"> </activity>
+        <activity android:name=".envoyer_demande_demenagement"> </activity>
+    </application>
+
+</manifest>

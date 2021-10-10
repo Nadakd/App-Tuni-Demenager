@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="choix_civilite">
+
+        <item>Femme </item>
+        <item>Homme</item>
+
+    </string-array>
+
+    <string-array name="choix_devis">
+
+        <item>Envoyer demande de déménagement </item>
+        <item>Supprimer le devis</item>
+
+    </string-array>
+    <string-array name="choix_liste_demenageur">
+        <item>Details demenageur </item>
+    </string-array>
+
+    <string-array name="choix_ville">
+
+        <item>Tounis </item>
+        <item>Sousse</item>
+        <item>Bizerte</item>
+        <item>Ariana</item>
+        <item>Jendouba</item>
+        <item>Nabeul</item>
+        <item>kef</item>
+        <item>Sfax</item>
+
+
+    </string-array>
+
+    <string-array name="choix_ascenseur">
+        <item>ascenseur </item>
+        <item>oui </item>
+        <item>non</item>
+
+    </string-array>
+
+    <string-array name="choix_etage">
+        <item>Etage </item>
+        <item>RDC </item>
+        <item>1 ère étage</item>
+        <item>2 ème étage</item>
+        <item>3 ème étage</item>
+        <item>4 ème étage</item>
+        <item>5 ème étage</item>
+        <item>6 ème étage</item>
+        <item>7 ème étage</item>
+        <item>8 ème étage</item>
+        <item>9 ème étage</item>
+        <item>10 ème étage</item>
+    </string-array>
+</resources>
