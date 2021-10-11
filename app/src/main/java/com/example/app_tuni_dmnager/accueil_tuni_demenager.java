@@ -19,6 +19,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 public class accueil_tuni_demenager  extends AppCompatActivity {
+
     LinearLayout linear;
     ListView listV ;
     Button chercher_dem;
@@ -61,9 +62,11 @@ public class accueil_tuni_demenager  extends AppCompatActivity {
         alerte.show();
 
     }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_client, menu);
-        return true;
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
@@ -72,23 +75,33 @@ public class accueil_tuni_demenager  extends AppCompatActivity {
         switch (item.getItemId()) {
 
             case R.id.menu_home:
-                Intent intent = new Intent(this,accueil_tuni_demenager.class);
+                Intent intent = new Intent(this,MainActivity.class);
                 this.startActivity(intent);
-                break;
+                finish();
+                return true;
             case R.id.menu_profil:
                 Intent intent1 = new Intent(this,profil_client.class);
                 this.startActivity(intent1);
-                break;
-
+                finish();
+                return true;
+            case R.id.menu_decon:
+                Intent intent2 = new Intent(this,connexion.class);
+                this.startActivity(intent2);
+                finish();
+                return true;
+            case R.id.menu_demande_devis:
+                Intent intent3 = new Intent(this,devis.class);
+                this.startActivity(intent3);
+                finish();
+                return true;
 
             default:
 
                 return super.onOptionsItemSelected(item);
         }
 
-        return true;
+
 
     }
 
-
-}
+    }

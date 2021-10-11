@@ -41,33 +41,48 @@ public class infodemenageur extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()) {
 
             case R.id.menu_home:
-                Intent intent = new Intent(this,accueil_tuni_demenager.class);
+                Intent intent = new Intent(this,MainActivity.class);
                 this.startActivity(intent);
-                break;
+                finish();
+                return true;
             case R.id.menu_profil:
                 Intent intent1 = new Intent(this,profil_client.class);
                 this.startActivity(intent1);
-                break;
+                finish();
+                return true;
             case R.id.menu_decon:
                 Intent intent2 = new Intent(this,connexion.class);
                 this.startActivity(intent2);
-                break;
-            case R.id.menu_demenageur:
-                Intent intent3=new Intent(this,devis.class);
+                finish();
+                return true;
+            case R.id.menu_demande_devis:
+                Intent intent3 = new Intent(this,devis.class);
                 this.startActivity(intent3);
-                break;
+                finish();
+                return true;
+
+
+
             default:
 
                 return super.onOptionsItemSelected(item);
         }
 
-        return true;
+
 
     }
 
-}
+    }
