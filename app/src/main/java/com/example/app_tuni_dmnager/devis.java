@@ -53,7 +53,7 @@ public class devis extends AppCompatActivity {
         switch (item.getItemId()) {
 
             case R.id.menu_home:
-                Intent intent = new Intent(this,MainActivity.class);
+                Intent intent = new Intent(this,accueil_tuni_demenager.class);
                 this.startActivity(intent);
                 finish();
                 return true;
