@@ -75,9 +75,8 @@ public class connexion extends AppCompatActivity {
         AlertDialog.Builder alerte = new AlertDialog.Builder(connexion.this); // declaration d'une alerte dialogue
         alerte.setTitle("Authentification"); // titre de l'alerte
         alerte.setIcon(R.drawable.icone_auth); // ajouter une icone pour l'alerte
-        //  alerte.setMessage("Bienvenue chez ");// message de l'alerte
-        alerte.setPositiveButton("Valider", new DialogInterface.OnClickListener() { // ajouter un bouton pour l'alerte
-
+        alerte.setPositiveButton("Valider", new DialogInterface.OnClickListener() {
+            // ajouter un bouton pour l'alerte
             @Override
             public void onClick(DialogInterface arg0, int arg1) {
                 // TODO Auto-generated method stub
@@ -89,7 +88,6 @@ public class connexion extends AppCompatActivity {
         });
         // ajouter un autre bouton dans l'alerte
         alerte.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-
             @Override
             public void onClick(DialogInterface arg0, int arg1) {
                 // TODO Auto-generated method stub
@@ -98,9 +96,6 @@ public class connexion extends AppCompatActivity {
         });
 
         alerte.show(); // pour afficher l'alerte
-
-
-
     }
 
     }
