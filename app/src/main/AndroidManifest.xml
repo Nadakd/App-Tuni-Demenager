@@ -27,6 +27,7 @@
         <activity android:name=".profil_client"></activity>
         <activity android:name=".devis"></activity>
         <activity android:name=".envoyer_demande_demenagement"></activity>
+        <activity android:name=".listmessage"></activity>
     </application>
 
 </manifest>

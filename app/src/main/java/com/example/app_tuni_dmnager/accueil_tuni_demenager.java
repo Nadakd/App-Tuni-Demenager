@@ -94,6 +94,11 @@ public class accueil_tuni_demenager  extends AppCompatActivity {
                 this.startActivity(intent3);
                 finish();
                 return true;
+            case R.id.menu_message:
+                Intent intent4 = new Intent(this,listmessage.class);
+                this.startActivity(intent4);
+                finish();
+                return true;
 
             default:
 

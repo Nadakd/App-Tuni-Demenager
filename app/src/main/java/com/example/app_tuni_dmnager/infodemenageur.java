@@ -16,7 +16,6 @@ public class infodemenageur extends AppCompatActivity {
         setContentView(R.layout.infodemenageur);
         Button env_dem_devis = (Button)findViewById(R.id.env_dem_devis);
         Button text_env_msg_dem = (Button)findViewById(R.id.text_env_msg_dem);
-
         env_dem_devis.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -40,6 +39,8 @@ public class infodemenageur extends AppCompatActivity {
 
             }
         });
+
+
     }
 
     @Override
@@ -73,7 +74,11 @@ public class infodemenageur extends AppCompatActivity {
                 this.startActivity(intent3);
                 finish();
                 return true;
-
+            case R.id.menu_message:
+                Intent intent4 = new Intent(this,listmessage.class);
+                this.startActivity(intent4);
+                finish();
+                return true;
 
 
             default:

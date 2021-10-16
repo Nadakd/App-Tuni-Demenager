@@ -3,21 +3,27 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/korka/AndroidStudioProjects/APP_Tuni_Dmnager/app/src/main/res/drawable/add.xml" value="0.25104166666666666" />
+        <entry key="..\:/Users/korka/AndroidStudioProjects/APP_Tuni_Dmnager/app/src/main/res/drawable/ic__delete.xml" value="0.2703125" />
         <entry key="..\:/Users/korka/AndroidStudioProjects/APP_Tuni_Dmnager/app/src/main/res/layout/accueil_client.xml" value="0.1793478260869565" />
         <entry key="..\:/Users/korka/AndroidStudioProjects/APP_Tuni_Dmnager/app/src/main/res/layout/accueil_tuni_demenager.xml" value="0.264" />
         <entry key="..\:/Users/korka/AndroidStudioProjects/APP_Tuni_Dmnager/app/src/main/res/layout/accueil_tunidemenager.xml" value="0.22554347826086957" />
         <entry key="..\:/Users/korka/AndroidStudioProjects/APP_Tuni_Dmnager/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/korka/AndroidStudioProjects/APP_Tuni_Dmnager/app/src/main/res/layout/connexion.xml" value="0.2" />
         <entry key="..\:/Users/korka/AndroidStudioProjects/APP_Tuni_Dmnager/app/src/main/res/layout/devis.xml" value="0.24094202898550723" />
+        <entry key="..\:/Users/korka/AndroidStudioProjects/APP_Tuni_Dmnager/app/src/main/res/layout/empty.xml" value="0.21014492753623187" />
         <entry key="..\:/Users/korka/AndroidStudioProjects/APP_Tuni_Dmnager/app/src/main/res/layout/envoyer_demande_demenagement.xml" value="0.24094202898550723" />
         <entry key="..\:/Users/korka/AndroidStudioProjects/APP_Tuni_Dmnager/app/src/main/res/layout/envoyer_demande_devis_dem.xml" value="0.20244565217391305" />
         <entry key="..\:/Users/korka/AndroidStudioProjects/APP_Tuni_Dmnager/app/src/main/res/layout/envoyer_message.xml" value="0.264" />
+        <entry key="..\:/Users/korka/AndroidStudioProjects/APP_Tuni_Dmnager/app/src/main/res/layout/ic_add.xml" value="0.2" />
         <entry key="..\:/Users/korka/AndroidStudioProjects/APP_Tuni_Dmnager/app/src/main/res/layout/infodemenageur.xml" value="0.264" />
         <entry key="..\:/Users/korka/AndroidStudioProjects/APP_Tuni_Dmnager/app/src/main/res/layout/inscription.xml" value="0.264" />
         <entry key="..\:/Users/korka/AndroidStudioProjects/APP_Tuni_Dmnager/app/src/main/res/layout/item_demenageur.xml" value="0.2" />
         <entry key="..\:/Users/korka/AndroidStudioProjects/APP_Tuni_Dmnager/app/src/main/res/layout/item_devis.xml" value="0.24094202898550723" />
         <entry key="..\:/Users/korka/AndroidStudioProjects/APP_Tuni_Dmnager/app/src/main/res/layout/item_info_demenageur.xml" value="0.2" />
+        <entry key="..\:/Users/korka/AndroidStudioProjects/APP_Tuni_Dmnager/app/src/main/res/layout/item_message.xml" value="0.2" />
         <entry key="..\:/Users/korka/AndroidStudioProjects/APP_Tuni_Dmnager/app/src/main/res/layout/layout.xml" value="0.2" />
+        <entry key="..\:/Users/korka/AndroidStudioProjects/APP_Tuni_Dmnager/app/src/main/res/layout/listmessage.xml" value="0.21014492753623187" />
         <entry key="..\:/Users/korka/AndroidStudioProjects/APP_Tuni_Dmnager/app/src/main/res/layout/menu_client.xml" value="0.2" />
         <entry key="..\:/Users/korka/AndroidStudioProjects/APP_Tuni_Dmnager/app/src/main/res/layout/nada.xml" value="0.15534420289855072" />
         <entry key="..\:/Users/korka/AndroidStudioProjects/APP_Tuni_Dmnager/app/src/main/res/layout/profil_client.xml" value="0.2" />
@@ -35,5 +41,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.21014492753623187" />
+      </ProjectState>
+    </option>
   </component>
 </project>

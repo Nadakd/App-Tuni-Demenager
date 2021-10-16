@@ -1,6 +1,8 @@
 package com.example.app_tuni_dmnager;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.content.Intent;
 import android.view.Menu;
@@ -12,6 +14,8 @@ public class MainActivity extends AppCompatActivity {
         protected void onCreate(Bundle savedInstanceState) {
                 super.onCreate(savedInstanceState);
                 setContentView(R.layout.activity_main);
+                MyDatabaseHelper helper=new MyDatabaseHelper (this);
+                SQLiteDatabase database=helper.getReadableDatabase();
                 Thread timer = new Thread(){  // creation  d'un compteur
                         public void run(){
                                 try{
@@ -29,8 +33,10 @@ public class MainActivity extends AppCompatActivity {
                 timer.start();  // pour lancer le compteuur
         }
 
+
         @Override
-        protected void onPause() { // méthode prédefinit ( en cas  ou de reception d'appel telephonique
+        protected void onPause() {
+                // méthode prédefinit ( en cas  ou de reception d'appel telephonique
                 // TODO Auto-generated method stub
                 super.onPause();
                 finish();

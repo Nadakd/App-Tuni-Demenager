@@ -17,6 +17,9 @@
     <string-array name="choix_liste_demenageur">
         <item>Details demenageur </item>
     </string-array>
+    <string-array name="choix_message">
+        <item>Supprimer le message </item>
+    </string-array>
 
     <string-array name="choix_ville">
 
