@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainLayout"
+    android:layout_width="match_parent"
+    android:layout_height="115dp"
+    android:background="@color/colorwhite"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="109dp"
+        android:padding="12dp">
+
+        <LinearLayout
+            android:layout_width="396dp"
+            android:layout_height="89dp"
+            android:orientation="horizontal"
+            android:weightSum="4"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="12dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="79dp"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/image"
+                    android:layout_width="match_parent"
+                    android:layout_height="79dp"
+                    android:background="@drawable/icone_message"
+                    android:scaleType="fitXY" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2.5"
+                android:orientation="vertical"
+                android:weightSum="3">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="249dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/sujet_msg1"
+                        android:layout_width="53dp"
+                        android:layout_height="27dp"
+                        android:layout_weight="0"
+                        android:gravity="left"
+                        android:text="Sujet:"
+                        android:textColor="@color/monsoon"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/item_Sujet"
+                        android:layout_width="155dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="left"
+                        android:textColor="#000000"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="258dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/contenu_msg_dem1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="left"
+                        android:text="Contenu:"
+                        android:textColor="@color/monsoon"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/item_Contenu"
+                        android:layout_width="150dp"
+                        android:layout_height="32dp"
+                        android:layout_weight="1"
+                        android:gravity="left"
+                        android:textColor="#000000"
+                        android:textSize="12dp" />
+
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/item_id"
+                    android:layout_width="13dp"
+                    android:layout_height="19dp"
+                    android:text="1"
+                    android:textColor="#000"
+                    android:textSize="40sp"
+                    android:textStyle="bold"
+                    android:visibility="invisible" />
+
+
+            </LinearLayout>
+
+            <ImageButton
+                android:id="@+id/menu_delete"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/ic_baseline_more_vert_24" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
+
+
