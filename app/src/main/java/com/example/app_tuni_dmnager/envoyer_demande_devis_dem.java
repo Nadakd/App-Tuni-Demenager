@@ -12,16 +12,28 @@ import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.app_tuni_dmnager.BD.MyDatabaseHelper;
+
 import java.util.ArrayList;
 
 public class envoyer_demande_devis_dem  extends AppCompatActivity {
 
-    EditText dem_adr_dep_devis , dem_cdepos_dep, dem_adr_arr_devis,dem_cdepos_arr,distance,description_dev;
+    EditText dem_adr_dep_devis , dem_cdepos_dep, dem_adr_arr_devis,dem_cdepos_arr,distance;
     Spinner ville_dep_devis,ville_arr_devis,etage_dep,etage_arr,ascenseur_dep,ascenseur_arr ;
 
     ArrayAdapter<String> adapter,adapter1;
     ArrayList<String> listItems=new ArrayList<>();
-    String dem_adr_dep_devis1 , dem_cdepos_dep1, dem_adr_arr_devis1,dem_cdepos_arr1,distance1,description_dev1,ville_dep_devis1,ville_arr_devis1,etage_dep1,etage_arr1,ascenseur_dep1,ascenseur_arr1;
+    String dem_adr_dep_devis1;
+    Integer dem_cdepos_dep1;
+    String dem_adr_arr_devis1;
+    Integer dem_cdepos_arr1;
+    String distance1;
+    String ville_dep_devis1;
+    String ville_arr_devis1;
+    String etage_dep1;
+    String etage_arr1;
+    String ascenseur_dep1;
+    String ascenseur_arr1;
 
 
     @Override
@@ -29,7 +41,6 @@ public class envoyer_demande_devis_dem  extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.envoyer_demande_devis_dem);
         distance = (EditText)findViewById(R.id.distance_devis);
-        description_dev = (EditText)findViewById(R.id.description_devis);
         dem_adr_dep_devis = (EditText)findViewById(R.id.dem_adr_dep_devis);
         dem_adr_arr_devis = (EditText)findViewById(R.id.dem_adr_arr_devis);
         dem_cdepos_dep = (EditText)findViewById(R.id.dem_cdepos_dep);
@@ -78,11 +89,10 @@ public class envoyer_demande_devis_dem  extends AppCompatActivity {
                 ascenseur_dep1 = ascenseur_dep.getSelectedItem().toString();
                 ascenseur_arr1 = ascenseur_arr.getSelectedItem().toString();
                 distance1 = distance.getText().toString();
-                description_dev1 = description_dev.getText().toString();
                 dem_adr_dep_devis1 = dem_adr_dep_devis.getText().toString();
                 dem_adr_arr_devis1 = dem_adr_arr_devis.getText().toString();
-                dem_cdepos_dep1 = dem_cdepos_dep.getText().toString();
-                dem_cdepos_arr1 = dem_cdepos_arr.getText().toString();
+                dem_cdepos_dep1 = Integer.valueOf(dem_cdepos_dep.getText().toString());
+                dem_cdepos_arr1 = Integer.valueOf(dem_cdepos_arr.getText().toString());
                 // insertion dans la base de donée
 
                 if (distance1.equals("")) {
@@ -90,11 +100,7 @@ public class envoyer_demande_devis_dem  extends AppCompatActivity {
                     distance.setBackgroundResource(R.drawable.edit_text_normal_gris_erreur);
                     return;
                 }
-                if (description_dev1.equals("")) {
-                    description_dev.setError("SVP saisir la description");
-                    description_dev.setBackgroundResource(R.drawable.edit_text_normal_gris_erreur);
-                    return;
-                }
+
                 if (dem_adr_dep_devis1.equals("")) {
                     dem_adr_dep_devis.setError("SVP saisir l'adresse de départ");
                     dem_adr_dep_devis.setBackgroundResource(R.drawable.edit_text_normal_gris_erreur);
@@ -114,8 +120,12 @@ public class envoyer_demande_devis_dem  extends AppCompatActivity {
                     return;
                 }
 
+// insertion dans la base de donée
+                MyDatabaseHelper myDB = new MyDatabaseHelper(envoyer_demande_devis_dem.this);
+                myDB.envoyer_demande_devis(dem_adr_dep_devis1.trim(),Integer.valueOf(dem_cdepos_arr.getText().toString().trim()),ville_dep_devis1.trim(),etage_dep1.trim(),ascenseur_dep1.trim(),dem_adr_arr_devis1.trim(),Integer.valueOf(dem_cdepos_arr.getText().toString().trim()),ville_arr_devis1.trim(),etage_arr1.trim(),ascenseur_arr1.trim(),distance1.trim());
 
-            }
+
+                }
 
         });
 

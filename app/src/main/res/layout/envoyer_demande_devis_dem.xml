@@ -154,17 +154,9 @@
                     android:background="@drawable/edit_text_normal_gris"
                     android:hint="distance"
                     android:padding="15dp"
-                    android:textStyle="bold" />/*
-
-                <EditText
-                    android:id="@+id/description_devis"
-                    android:layout_width="270dp"
-                    android:layout_height="61dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/edit_text_normal_gris"
-                    android:hint="description"
-                    android:padding="15dp"
                     android:textStyle="bold" />
+
+
 
 
                 <Button
