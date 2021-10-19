@@ -10,7 +10,7 @@
     <LinearLayout
         android:id="@+id/top"
         android:layout_width="match_parent"
-        android:layout_height="124dp"
+        android:layout_height="144dp"
         android:gravity="center_vertical|center_horizontal"
         android:orientation="vertical">
 
@@ -18,7 +18,7 @@
         <TextView
 
             android:layout_width="319dp"
-            android:layout_height="match_parent"
+            android:layout_height="150dp"
             android:gravity="center"
             android:text="Informations sur le déménageur"
             android:textColor="@color/colorbeige"
@@ -27,49 +27,139 @@
 
     </LinearLayout>
 
-    <ListView
-        android:id="@+id/list_info_dem"
-        android:layout_width="match_parent"
-        android:layout_height="244dp" />
     <LinearLayout
-        android:id="@+id/loginLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="172dp"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/env_dem_devis"
-            android:layout_width="263dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="10dp"
-            android:layout_weight="1"
-            android:background="@color/colorbeige"
-            android:fontFamily="monospace"
-            android:text="Envoyer demande de devis de déménagement"
-            android:textColor="@color/colorwhite"
-            android:textSize="10sp"
-            android:textStyle="bold"
-            tools:ignore="TextContrastCheck" />
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/text_env_msg_dem"
-            android:layout_width="137dp"
+
+            <TextView
+                android:id="@+id/text_nomprenomdem"
+                android:layout_width="179dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Nom et prénom :"
+                android:textColor="@color/colorblack"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/text_nomprenom1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="TextView"
+
+                android:textColor="@color/colorblack"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="10dp"
-            android:layout_weight="1"
-            android:background="@color/colorbeige"
-            android:fontFamily="monospace"
-            android:text="Envoyer Message"
-            android:textColor="@color/colorwhite"
-            android:textSize="10sp"
-            android:textStyle="bold"
-            tools:ignore="TextContrastCheck" />
+            android:orientation="horizontal">
 
+            <TextView
+                android:id="@+id/text_num_tlf_dem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Numéro de téléphone:"
+                android:textColor="@color/colorblack"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
+            <TextView
+                android:id="@+id/text_num_tlf_dem1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="TextView"
 
+                android:textColor="@color/colorblack"
+                android:textSize="16dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/Email_dem"
+                android:layout_width="118dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Email :"
+                android:textColor="@color/colorblack"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/Email_dem1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="TextView"
+
+                android:textColor="@color/colorblack"
+                android:textSize="16dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/villedem"
+                android:layout_width="118dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Ville :"
+                android:textColor="@color/colorblack"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/villedem1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="TextView"
+
+                android:textColor="@color/colorblack"
+                android:textSize="16dp" />
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+        <LinearLayout
+            android:id="@+id/loginLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/env_dem_devis"
+                android:layout_width="263dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:background="@color/colorbeige"
+                android:fontFamily="monospace"
+                android:text="Envoyer demande de devis de déménagement"
+                android:textColor="@color/colorwhite"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                tools:ignore="TextContrastCheck" />
+
+
+        </LinearLayout>
+    </LinearLayout>

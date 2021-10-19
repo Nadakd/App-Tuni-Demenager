@@ -1,51 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorwhite">
+    android:layout_height="90dp"
+    android:orientation="vertical">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:layout_height="90dp"
+        android:padding="12dp">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="91dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/text_nomdem"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="23dp"
-                android:textStyle="bold" />
+            android:layout_width="439dp"
+            android:layout_height="74dp"
+            android:orientation="horizontal"
+            android:weightSum="4"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="53dp">
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="91dp"
-                android:orientation="horizontal">
+                android:layout_width="49dp"
+                android:layout_height="77dp"
+                android:layout_weight="0.5">
 
-                <TextView
-                    android:id="@+id/text_villedem"
-                    android:layout_width="251dp"
+                <ImageView
+                    android:id="@+id/img_cam"
+                    android:layout_width="55dp"
                     android:layout_height="wrap_content"
-                    android:text="TextView"
-                    android:textAllCaps="false"
-                    android:textSize="15dp" />
+                    android:background="@drawable/demenageur"
+                    android:scaleType="fitXY" />
+            </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="77dp"
+                android:layout_weight="0"></LinearLayout>
+
+            <LinearLayout
+                android:layout_width="146dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:orientation="vertical"
+                android:weightSum="3">
+
+                <LinearLayout
+                    android:layout_width="260dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/text_nomdem"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="TextView"
+                        android:textColor="@color/colorblack"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/text_villedem"
+                        android:layout_width="101dp"
+                        android:layout_height="wrap_content"
+                        android:text="TextView"
+                        android:textAllCaps="false"
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:id="@+id/id"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorblack"
+                        android:textSize="20dp"
+                        android:textStyle="bold"
+                        android:visibility="invisible" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="10dp"
+                android:layout_height="50dp"
+                android:layout_weight="1">
 
                 <ImageView
                     android:id="@+id/imageView4"
-                    android:layout_width="172dp"
-                    android:layout_height="20dp"
-                    android:gravity="right"
-                    app:srcCompat="@drawable/fleche" />
+                    android:layout_width="50dp"
+                    android:layout_height="35dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:src="@drawable/fleche" />
             </LinearLayout>
+
         </LinearLayout>
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>
+
+
+

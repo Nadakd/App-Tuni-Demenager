@@ -10,6 +10,8 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.app_tuni_dmnager.BD.MyDatabaseHelper;
+
 public class envoyer_message  extends AppCompatActivity {
 
     EditText contenu , sujet ;

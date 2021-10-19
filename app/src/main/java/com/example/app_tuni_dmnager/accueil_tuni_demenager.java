@@ -5,16 +5,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.app_tuni_dmnager.Adapter.Demenageur_Adapter;
+import com.example.app_tuni_dmnager.BD.MyDatabaseHelper;
+import com.example.app_tuni_dmnager.Model.Demenageur;
 
 import java.util.ArrayList;
 
@@ -25,43 +32,62 @@ public class accueil_tuni_demenager  extends AppCompatActivity {
     Button chercher_dem;
     Spinner ville_dem;
     ArrayList<String> listItems=new ArrayList<>();
+   ImageView imageView4;
+    ImageView img_cam;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.accueil_tuni_demenager);
+
         linear = (LinearLayout) findViewById(R.id.id_lineara);
         chercher_dem=(Button) findViewById(R.id.chercher_dem);
         ville_dem=(Spinner)findViewById(R.id.ville_chercher_dem);
         listV = (ListView)findViewById(R.id.list_demenageur);
+        imageView4 = (ImageView)findViewById(R.id.imageView4);
+        img_cam = (ImageView)findViewById(R.id.img_cam);
+
+        MyDatabaseHelper db=new MyDatabaseHelper(accueil_tuni_demenager.this);
+
+        db.addDemenageur("sadek rais","sadek@yahoo.fr",258545,25854457,"Sfax");
+        db.addDemenageur("rami said","rami@yahoo.fr",2015441,20145785,"Sousse");
+        db.addDemenageur("mahmoud amiri","mahmoud@yahoo.fr",0214562,20147852,"Tunis");
+        db.addDemenageur("mourad soyeh","mourad@yahoo.fr",1457811,24150840,"Nabeul");
+        db.addDemenageur("mounir belhadj","mounir@yahoo.fr",147845,20145746,"Sousse");
+        db.addDemenageur("salah bouraoui","salah@yahoo.fr",122854,15147156,"Jandouba");
+
+        loadFromDBToMemory();
+        Demenageur_Adapter demAdapter = new Demenageur_Adapter(getApplicationContext(),Demenageur.demArrayList);
+        listV.setAdapter(demAdapter);
 
         ArrayAdapter adapter= ArrayAdapter.createFromResource(this, R.array.choix_ville, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         ville_dem.setAdapter(adapter);
-        ////
-        AlertDialog.Builder alerte=new AlertDialog.Builder(accueil_tuni_demenager.this);
 
+        //--------------------details demenageur
 
-
-        alerte.setItems(R.array.choix_liste_demenageur, new DialogInterface.OnClickListener() {
-
+        listV.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int arg) {
-                // TODO Auto-generated method stub
-                switch (arg){
-                    case 0 : startActivity(new Intent(getApplicationContext(),infodemenageur.class)) ; break ;
-                  //  case 1 : addFavoris() ; break ;
+            public void onItemClick(AdapterView<?> adapterView, View view,int position,long l) {
+
+                Demenageur selecteddem = (Demenageur) listV.getItemAtPosition(position);
+                Intent detailsdemIntent = new Intent(getApplicationContext(), infodemenageur.class);
+                detailsdemIntent.putExtra(Demenageur.Demenageur_details_EXTRA,selecteddem.getId());
+                startActivity(detailsdemIntent);
 
 
-
-                    default : Toast.makeText(accueil_tuni_demenager.this,"Erreur", Toast.LENGTH_LONG).show();
-                }
             }
         });
 
-        alerte.show();
 
     }
+
+    private void loadFromDBToMemory() {
+        MyDatabaseHelper dbhelper=MyDatabaseHelper.instanceOfDatabase(this);
+        dbhelper.populateDemListArray();
+
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

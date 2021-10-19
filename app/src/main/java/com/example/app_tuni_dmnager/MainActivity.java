@@ -5,9 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.content.Intent;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.Toast;
+
+import com.example.app_tuni_dmnager.BD.MyDatabaseHelper;
 
 public class MainActivity extends AppCompatActivity {
         @Override

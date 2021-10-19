@@ -6,16 +6,45 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.app_tuni_dmnager.BD.MyDatabaseHelper;
+import com.example.app_tuni_dmnager.Model.Demenageur;
+
 public class infodemenageur extends AppCompatActivity {
+
+    TextView text_nomprenom1,text_num_tlf_dem1,Email_dem1,villedem1;
+    Demenageur selecteddem;
+
+    MyDatabaseHelper db=new MyDatabaseHelper(infodemenageur.this);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.infodemenageur);
         Button env_dem_devis = (Button)findViewById(R.id.env_dem_devis);
-        Button text_env_msg_dem = (Button)findViewById(R.id.text_env_msg_dem);
+        text_nomprenom1 = (TextView)findViewById(R.id.text_nomprenom1);
+        text_num_tlf_dem1 = (TextView)findViewById(R.id.text_num_tlf_dem1);
+        Email_dem1 = (TextView)findViewById(R.id.Email_dem1);
+        villedem1 = (TextView)findViewById(R.id.villedem1);
+
+        //-------edit
+
+         Intent previousIntent = getIntent();
+         int passeddemID = previousIntent.getIntExtra(Demenageur.Demenageur_details_EXTRA, -1);
+         selecteddem = Demenageur.getdemForID(passeddemID);
+         MyDatabaseHelper myDatabaseHelper = MyDatabaseHelper.instanceOfDatabase(this);
+        text_nomprenom1.setText(selecteddem.getNom_prenom());
+        text_num_tlf_dem1.setText(String.valueOf(selecteddem.getTlf()));
+        Email_dem1.setText(selecteddem.getEmail());
+        villedem1.setText(selecteddem.getVille());
+        myDatabaseHelper.DemListArraybyid(selecteddem);
+
+
         env_dem_devis.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -23,18 +52,6 @@ public class infodemenageur extends AppCompatActivity {
                 // TODO Auto-generated method stub
 
                 Intent i=new Intent(infodemenageur.this,envoyer_demande_devis_dem.class);
-                startActivity(i);
-
-            }
-        });
-
-        text_env_msg_dem.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
-
-                Intent i=new Intent(infodemenageur.this,envoyer_message.class);
                 startActivity(i);
 
             }
