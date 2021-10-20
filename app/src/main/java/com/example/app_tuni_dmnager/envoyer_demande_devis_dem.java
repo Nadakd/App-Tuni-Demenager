@@ -124,6 +124,9 @@ public class envoyer_demande_devis_dem  extends AppCompatActivity {
                 MyDatabaseHelper myDB = new MyDatabaseHelper(envoyer_demande_devis_dem.this);
                 myDB.envoyer_demande_devis(dem_adr_dep_devis1.trim(),Integer.valueOf(dem_cdepos_arr.getText().toString().trim()),ville_dep_devis1.trim(),etage_dep1.trim(),ascenseur_dep1.trim(),dem_adr_arr_devis1.trim(),Integer.valueOf(dem_cdepos_arr.getText().toString().trim()),ville_arr_devis1.trim(),etage_arr1.trim(),ascenseur_arr1.trim(),distance1.trim());
 
+                Intent intent = new Intent(envoyer_demande_devis_dem.this, liste_demande_devis_demenagement.class);
+                startActivity(intent);
+
 
                 }
 
@@ -159,12 +162,15 @@ public class envoyer_demande_devis_dem  extends AppCompatActivity {
                 finish();
                 return true;
             case R.id.menu_demande_devis:
-                Intent intent3 = new Intent(this,devis.class);
+                Intent intent3 = new Intent(this,liste_demande_devis_demenagement.class);
                 this.startActivity(intent3);
                 finish();
                 return true;
-
-
+            case R.id.menu_message:
+                Intent intent4 = new Intent(this,listmessage.class);
+                this.startActivity(intent4);
+                finish();
+                return true;
 
             default:
 

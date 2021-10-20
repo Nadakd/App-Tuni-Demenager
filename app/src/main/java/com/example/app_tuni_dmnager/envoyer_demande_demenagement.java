@@ -61,8 +61,13 @@ public class envoyer_demande_demenagement extends AppCompatActivity {
                 finish();
                 return true;
             case R.id.menu_demande_devis:
-                Intent intent3 = new Intent(this,devis.class);
+                Intent intent3 = new Intent(this,liste_demande_devis_demenagement.class);
                 this.startActivity(intent3);
+                finish();
+                return true;
+            case R.id.menu_message:
+                Intent intent4 = new Intent(this,listmessage.class);
+                this.startActivity(intent4);
                 finish();
                 return true;
 

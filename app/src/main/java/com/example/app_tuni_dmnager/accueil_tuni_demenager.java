@@ -116,7 +116,7 @@ public class accueil_tuni_demenager  extends AppCompatActivity {
                 finish();
                 return true;
             case R.id.menu_demande_devis:
-                Intent intent3 = new Intent(this,devis.class);
+                Intent intent3 = new Intent(this,liste_demande_devis_demenagement.class);
                 this.startActivity(intent3);
                 finish();
                 return true;

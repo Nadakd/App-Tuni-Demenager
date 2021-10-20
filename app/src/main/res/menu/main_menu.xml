@@ -24,7 +24,7 @@
         <menu>
         <item android:id="@+id/menu_demande_devis"
             android:icon="@drawable/icone_demande"
-            android:title="Devis"
+            android:title="Demande devis"
             app:showAsAction="ifRoom"></item>
 
             <item android:id="@+id/menu_message"

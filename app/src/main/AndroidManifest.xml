@@ -22,12 +22,14 @@
         <activity android:name=".infodemenageur"></activity>
         <activity android:name=".envoyer_demande_devis_dem"></activity>
         <activity android:name=".envoyer_message"></activity>
+        <activity android:name=".listmessage"></activity>
         <activity android:name=".connexion" android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
         <activity android:name=".inscription" android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
         <activity android:name=".profil_client"></activity>
         <activity android:name=".devis"></activity>
         <activity android:name=".envoyer_demande_demenagement"></activity>
-        <activity android:name=".listmessage"></activity>
+        <activity android:name=".liste_demande_devis_demenagement"></activity>
+
     </application>
 
 </manifest>

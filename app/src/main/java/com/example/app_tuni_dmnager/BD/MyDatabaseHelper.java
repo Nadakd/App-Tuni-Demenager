@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
 
+import com.example.app_tuni_dmnager.Model.DEMANDE_DEVIS;
 import com.example.app_tuni_dmnager.Model.Demenageur;
 
 import java.util.ArrayList;
@@ -169,8 +170,34 @@ public void populateDemListArray()
              Toast.makeText(context, "Added Successfully!",Toast.LENGTH_SHORT).show();
          }
      }
+//-----------------------Liste demande devis
 
-}
+    public void ListeDemandeDevis()
+    {
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+
+        try (Cursor result = sqLiteDatabase.rawQuery("SELECT * FROM " + TABLE3, null)) {
+            if (result.getCount() != 0) {
+                while (result.moveToNext()) {
+                    int id = result.getInt(0);
+                    String adresse_depart = result.getString(1);
+                    int code_postal_dep = result.getInt(2);
+                    String ville_depart = result.getString(3);
+                    String etage_dep = result.getString(4);
+                    String ascenseur_dep = result.getString(5);
+                    String adresse_arrive = result.getString(6);
+                    int code_postal_arv = result.getInt(7);
+                    String ville_arv = result.getString(8);
+                    String etage_arv = result.getString(9);
+                    String ascenseur_arv = result.getString(10);
+                    String distance = result.getString(11);
+                    DEMANDE_DEVIS dem = new DEMANDE_DEVIS(id, adresse_depart, code_postal_dep, ville_depart, etage_dep, ascenseur_dep, adresse_arrive, code_postal_arv, ville_arv, etage_arv, ascenseur_arv, distance);
+                    DEMANDE_DEVIS.demande_devisArrayList.add(dem);
+                }
+            }
+        }}}
+
+
 
 
 
