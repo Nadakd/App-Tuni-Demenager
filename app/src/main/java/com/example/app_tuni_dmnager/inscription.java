@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.app_tuni_dmnager.BD.MyDatabaseHelper;
+
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -22,8 +24,8 @@ public class inscription extends AppCompatActivity {
     ArrayList<String> listItems=new ArrayList<>();
     ArrayAdapter<String> adapter;
     Spinner spville ;
-    String  nom_prenom1,vil1 , cin1 , age1,tlf1 , email1 , password1,spcat1,conf1 ;
-
+    String  nom_prenom1,vil1  , email1 , password1,civilite,conf1 ;
+     Integer cin1 ,age1,tlf1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,12 +72,12 @@ public class inscription extends AppCompatActivity {
 
                 nom_prenom1 = nom_prenom.getText().toString();
 
-                spcat1 = spCat.getSelectedItem().toString();
+                civilite = spCat.getSelectedItem().toString();
                 vil1 = spville.getSelectedItem().toString();
 
-                cin1 = cin.getText().toString();
-                age1 = age.getText().toString();
-                tlf1 = tlf.getText().toString();
+                cin1 =Integer.valueOf(cin.getText().toString());
+                age1 = Integer.valueOf(age.getText().toString());
+                tlf1 = Integer.valueOf(tlf.getText().toString());
                 email1 = email.getText().toString();
                 password1 = password.getText().toString();
                 conf1=conf.getText().toString();
@@ -124,7 +126,7 @@ public class inscription extends AppCompatActivity {
                     nom_prenom.setBackgroundResource(R.drawable.edit_text_normal_error);
                     return;
                 }
-                if(tlf1.length()<8)
+               if(tlf1.toString().length()<8)
                 {
                     Toast.makeText(inscription.this,"Verifier votre téléphone", Toast.LENGTH_SHORT).show();
                     tlf.setBackgroundResource(R.drawable.edit_text_normal_error);
@@ -138,6 +140,15 @@ public class inscription extends AppCompatActivity {
                     conf.setBackgroundResource(R.drawable.edit_text_normal_error);
                     return;
                 }
+
+                MyDatabaseHelper myDB = new MyDatabaseHelper(inscription.this);
+                myDB.Inscription(nom_prenom1.trim(),civilite.trim(),vil1.trim(),Integer.valueOf(cin.getText().toString().trim()),Integer.valueOf(age.getText().toString().trim()),Integer.valueOf(tlf.getText().toString().trim()),email1.trim(),password1.trim(),conf1.trim());
+
+                Intent intent = new Intent(inscription.this,connexion.class);
+                startActivity(intent);
+
+
+
 
             }
         });

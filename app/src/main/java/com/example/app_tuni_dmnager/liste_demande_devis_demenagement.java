@@ -4,7 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,16 +18,30 @@ import com.example.app_tuni_dmnager.Model.DEMANDE_DEVIS;
 import com.example.app_tuni_dmnager.Model.Demenageur;
 
 public class liste_demande_devis_demenagement extends AppCompatActivity {
+    int id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.liste_demande_devis_demenagement);
         ListView listdemandedevis = (ListView)findViewById(R.id.list_demande_devis);
         MyDatabaseHelper db=new MyDatabaseHelper(liste_demande_devis_demenagement.this);
-
+       id=getIntent().getIntExtra("id",0);
         loadFromDBToMemory();
         DEMANDE_DEVIS_Adapter demandeAdapter = new DEMANDE_DEVIS_Adapter(getApplicationContext(),DEMANDE_DEVIS.demande_devisArrayList);
         listdemandedevis.setAdapter(demandeAdapter);
+        listdemandedevis.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+             //   DEMANDE_DEVIS dm= (DEMANDE_DEVIS) adapterView.getItemAtPosition(position);
+                db.deleteOneMsg(id);
+                startActivity(new Intent(liste_demande_devis_demenagement.this, liste_demande_devis_demenagement.class));
+                finish();
+
+
+
+
+            }
+        });
 
     }
 

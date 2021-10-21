@@ -49,10 +49,9 @@ public class envoyer_message  extends AppCompatActivity {
                     contenu.setError("SVP saisir votre message");
                     return;
                 }
-// insertion dans la base de donée
+              // insertion dans la base de donée
                 MyDatabaseHelper myDB = new MyDatabaseHelper(envoyer_message.this);
                 myDB.addMessage(sujet.getText().toString().trim(),contenu.getText().toString().trim());
-
 
                 Intent intent = new Intent(envoyer_message.this, listmessage.class);
                 startActivity(intent);

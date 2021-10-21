@@ -46,11 +46,10 @@ public class DEMANDE_DEVIS_Adapter extends ArrayAdapter<DEMANDE_DEVIS> {
         id.setText(String.valueOf(id.getId()));
         adresse_depart.setText(dems.getAdresse_depart());
         adresse_arrive.setText(dems.getAdresse_arrive());
-        id.setText(String.valueOf(id.getId()));
         ville_depart.setText(dems.getVille_depart());
         ville_arv.setText(dems.getVille_arv());
-        code_postal_dep.setText(dems.getCode_postal_dep());
-        code_postal_arv.setText(dems.getCode_postal_arv());
+        code_postal_dep.setText(String.valueOf(dems.getCode_postal_dep()));
+        code_postal_arv.setText(String.valueOf(dems.getCode_postal_arv()));
         ascenseurdep.setText(dems.getAscenseur_dep());
         ascenseurarr.setText(dems.getAscenseur_arv());
         distancedevis1.setText(dems.getDistance());
@@ -59,4 +58,5 @@ public class DEMANDE_DEVIS_Adapter extends ArrayAdapter<DEMANDE_DEVIS> {
 
         return convertView;
     }
+
 }

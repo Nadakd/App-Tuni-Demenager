@@ -13,6 +13,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.app_tuni_dmnager.BD.MyDatabaseHelper;
+
 public class connexion extends AppCompatActivity {
     EditText log, pass;
     String login,pwd;
@@ -66,37 +68,21 @@ public class connexion extends AppCompatActivity {
 
                     return;
                 }
+                //-------connexion
+                MyDatabaseHelper myDB = new MyDatabaseHelper(connexion.this);
 
+                boolean login =  myDB.login(log.getText().toString() , pass.getText().toString());
+                if (login){
+                    Toast.makeText(connexion.this, "Login Successfully", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(connexion.this , accueil_tuni_demenager.class));
+                    finish();
+                }else{
+                    Toast.makeText(connexion.this, "Login Failed !!", Toast.LENGTH_SHORT).show();
+                }
 
             }
 
         });
-        //pour vider les deux champs apres l'authentifcation
-        AlertDialog.Builder alerte = new AlertDialog.Builder(connexion.this); // declaration d'une alerte dialogue
-        alerte.setTitle("Authentification"); // titre de l'alerte
-        alerte.setIcon(R.drawable.icone_auth); // ajouter une icone pour l'alerte
-        alerte.setPositiveButton("Valider", new DialogInterface.OnClickListener() {
-            // ajouter un bouton pour l'alerte
-            @Override
-            public void onClick(DialogInterface arg0, int arg1) {
-                // TODO Auto-generated method stub
-                log.setText("");
-                pass.setText("");
-                Intent i = new Intent(connexion.this,accueil_tuni_demenager.class);
-                startActivity(i);
-            }
-        });
-        // ajouter un autre bouton dans l'alerte
-        alerte.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface arg0, int arg1) {
-                // TODO Auto-generated method stub
-                finish(); // pour quitter cette interface
-            }
-        });
 
-        alerte.show(); // pour afficher l'alerte
-    }
-
-    }
+    }}
 
