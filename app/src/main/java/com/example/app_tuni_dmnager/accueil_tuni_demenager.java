@@ -6,6 +6,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,6 +22,7 @@ import android.widget.Toast;
 
 import com.example.app_tuni_dmnager.Adapter.Demenageur_Adapter;
 import com.example.app_tuni_dmnager.BD.MyDatabaseHelper;
+import com.example.app_tuni_dmnager.Model.Client;
 import com.example.app_tuni_dmnager.Model.Demenageur;
 
 import java.util.ArrayList;
@@ -34,18 +36,20 @@ public class accueil_tuni_demenager  extends AppCompatActivity {
     ArrayList<String> listItems=new ArrayList<>();
    ImageView imageView4;
     ImageView img_cam;
+    Client client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.accueil_tuni_demenager);
-
+        client=(Client) getIntent().getSerializableExtra("client");
         linear = (LinearLayout) findViewById(R.id.id_lineara);
         chercher_dem=(Button) findViewById(R.id.chercher_dem);
         ville_dem=(Spinner)findViewById(R.id.ville_chercher_dem);
         listV = (ListView)findViewById(R.id.list_demenageur);
         imageView4 = (ImageView)findViewById(R.id.imageView4);
         img_cam = (ImageView)findViewById(R.id.img_cam);
+
 
         MyDatabaseHelper db=new MyDatabaseHelper(accueil_tuni_demenager.this);
 
@@ -106,6 +110,7 @@ public class accueil_tuni_demenager  extends AppCompatActivity {
                 finish();
                 return true;
             case R.id.menu_profil:
+
                 Intent intent1 = new Intent(this,profil_client.class);
                 this.startActivity(intent1);
                 finish();

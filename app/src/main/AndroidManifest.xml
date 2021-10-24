@@ -30,6 +30,8 @@
         <activity android:name=".envoyer_demande_demenagement"></activity>
         <activity android:name=".liste_demande_devis_demenagement"></activity>
 
+        <activity android:name=".welcome"></activity>
+
     </application>
 
 </manifest>

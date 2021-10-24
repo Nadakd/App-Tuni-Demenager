@@ -10,9 +10,14 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.app_tuni_dmnager.BD.MyDatabaseHelper;
+import com.example.app_tuni_dmnager.Model.Client;
+
 public class profil_client extends AppCompatActivity {
     EditText nom_prenom  , cin,age,tlf, email, password;
     String    nom_prenom1  , cin1,age1,tlf1, email1, password1;
+    private Client client;
+    MyDatabaseHelper db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,43 +29,22 @@ public class profil_client extends AppCompatActivity {
         tlf = (EditText)findViewById(R.id.newtlf1);
         email = (EditText)findViewById(R.id.newemail1);
         password = (EditText)findViewById(R.id.newPassword1);
-
-        Button modifier = (Button)findViewById(R.id.modifier_profil);
-
-
-        modifier.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                nom_prenom1 = nom_prenom.getText().toString();
-
-                cin1 = cin.getText().toString();
-                age1 = age.getText().toString();
-                tlf1 = tlf.getText().toString();
-                email1 = email.getText().toString();
-                password1 = password.getText().toString();
-                // verif
-
-                if (nom_prenom1.equals("")) {
-                    nom_prenom.setError(" SVP saisir votre NOM et PRENOM");
-                    nom_prenom.setBackgroundResource(R.drawable.edit_text_normal_error);
-                    return;
-                }  if (cin1.equals("")) {
-                    cin.setError(" SVP saisir votre numéro CIN");
-                    cin.setBackgroundResource(R.drawable.edit_text_normal_error);
-                    return;
-                } if (age1.equals("")) {
-                    age.setError(" SVP saisir votre AGE");
-                    age.setBackgroundResource(R.drawable.edit_text_normal_error);
-                    return;
-                }  if (tlf1.equals("")) {
-                    tlf.setError(" SVP saisir votre Numéro de téléphone");
-                    tlf.setBackgroundResource(R.drawable.edit_text_normal_error);
-                    return;
-                }
-
-            }
-        });
+       Button modifier = (Button)findViewById(R.id.modifier_profil);
+        String emaill=getSharedPreferences("email1",MODE_PRIVATE).getString("emaill","");
+        String pwd=getSharedPreferences("pass",MODE_PRIVATE).getString("pwd","");
+        int cinn= getSharedPreferences("cin",MODE_PRIVATE).getInt("cin1",0);
+        int agee= getSharedPreferences("age",MODE_PRIVATE).getInt("age1",0);
+        int tlff= getSharedPreferences("tlf",MODE_PRIVATE).getInt("tlf1",0);
+        String nomprenom=getSharedPreferences("nom_prenom",MODE_PRIVATE).getString("nom_prenom1","");
+        email.setText(emaill);
+        cin.setText(String.valueOf(cinn));
+        age.setText(String.valueOf(agee));
+        tlf.setText(String.valueOf(tlff));
+        nom_prenom.setText(nomprenom);
+        password.setText(pwd);
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

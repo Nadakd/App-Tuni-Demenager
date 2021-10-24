@@ -1,8 +1,13 @@
 package com.example.app_tuni_dmnager;
 
 import android.app.AlertDialog;
+import android.content.ContentValues;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,11 +19,13 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.app_tuni_dmnager.BD.MyDatabaseHelper;
+import com.example.app_tuni_dmnager.Model.Client;
 
 public class connexion extends AppCompatActivity {
     EditText log, pass;
     String login,pwd;
     TextView inscription_cl;
+    MyDatabaseHelper db1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,12 +76,21 @@ public class connexion extends AppCompatActivity {
                     return;
                 }
                 //-------connexion
-                MyDatabaseHelper myDB = new MyDatabaseHelper(connexion.this);
-
-                boolean login =  myDB.login(log.getText().toString() , pass.getText().toString());
-                if (login){
+              //  MyDatabaseHelper myDB = new MyDatabaseHelper(connexion.this);
+                String email=log.getText().toString();
+                String password= pass.getText().toString();
+                Client client=new Client();
+                String login =login(email,password);
+                if (null!=login) {
                     Toast.makeText(connexion.this, "Login Successfully", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(connexion.this , accueil_tuni_demenager.class));
+                    Intent intent=new Intent(connexion.this, profil_client.class);
+                   intent.putExtra("emaill",login);
+                    intent.putExtra("pwd",login);
+                    intent.putExtra("cin1",login);
+                    intent.putExtra("age1",login);
+                    intent.putExtra("tlf1",login);
+                    intent.putExtra("nom_prenom1",login);
+                    startActivity(intent);
                     finish();
                 }else{
                     Toast.makeText(connexion.this, "Login Failed !!", Toast.LENGTH_SHORT).show();
@@ -84,5 +100,44 @@ public class connexion extends AppCompatActivity {
 
         });
 
-    }}
+    }
+
+    public String login(String email , String password){
+        MyDatabaseHelper myDB = new MyDatabaseHelper(getApplicationContext());
+        SQLiteDatabase db =myDB.getWritableDatabase();
+        Cursor cursor =db.rawQuery("SELECT _id,email,password,cin,age,tlf,nom_prenom FROM CLIENT where email = ? and password = ?",new String[]{email,password});
+        if (cursor.getCount()>0){
+            cursor.moveToFirst();
+            String email1=cursor.getString(1);
+            String pass=cursor.getString(2);
+            int cin=cursor.getInt(3);
+            int age=cursor.getInt(4);
+            int tlf=cursor.getInt(5);
+            String nom_prenom=cursor.getString(6);
+            SharedPreferences.Editor sp= getSharedPreferences("email1",MODE_PRIVATE).edit();
+            SharedPreferences.Editor sp1= getSharedPreferences("pass",MODE_PRIVATE).edit();
+            SharedPreferences.Editor sp2= getSharedPreferences("cin",MODE_PRIVATE).edit();
+            SharedPreferences.Editor sp3= getSharedPreferences("age",MODE_PRIVATE).edit();
+            SharedPreferences.Editor sp4= getSharedPreferences("tlf",MODE_PRIVATE).edit();
+            SharedPreferences.Editor sp5= getSharedPreferences("nom_prenom",MODE_PRIVATE).edit();
+            sp.putString("emaill",email1);
+            sp1.putString("pwd",pass);
+            sp2.putInt("cin1",cin);
+            sp3.putInt("age1",age);
+            sp4.putInt("tlf1",tlf);
+            sp5.putString("nom_prenom1",nom_prenom);
+            sp.apply();
+            sp1.apply();
+            sp2.apply();
+            sp3.apply();
+            sp4.apply();
+            sp5.apply();
+            cursor.close();
+            return email1;
+        }return null;
+    }
+
+
+
+}
 

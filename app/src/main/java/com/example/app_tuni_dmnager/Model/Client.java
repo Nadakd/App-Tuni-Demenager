@@ -1,6 +1,8 @@
 package com.example.app_tuni_dmnager.Model;
 
-public class Client {
+import java.io.Serializable;
+
+public class Client implements Serializable {
     private int id;
     private String nom_prenom;
     private String civilité;
@@ -15,6 +17,30 @@ public class Client {
     public Client() {
     }
 
+    public Client(String nom_prenom,int cin, int age, int tlf, String email, String password) {
+
+        this.nom_prenom = nom_prenom;
+        this.cin = cin;
+        this.age = age;
+        this.tlf = tlf;
+        this.email = email;
+        this.Password = password;
+    }
+
+    public Client(int id, String email, String password) {
+        this.id = id;
+        this.email = email;
+        this.Password = password;
+    }
+    public Client(int id,String nom_prenom,int cin, int age, int tlf, String email, String password) {
+        this.id = id;
+        this.nom_prenom = nom_prenom;
+        this.cin = cin;
+        this.age = age;
+        this.tlf = tlf;
+        this.email = email;
+        this.Password = password;
+    }
     public Client(String nom_prenom, String civilité, String ville, int cin, int age, int tlf, String email, String password, String ConfirmPassword) {
 
         this.nom_prenom = nom_prenom;

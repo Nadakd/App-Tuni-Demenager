@@ -1,17 +1,21 @@
 package com.example.app_tuni_dmnager.BD;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
-
+import androidx.appcompat.app.AppCompatActivity;
+import com.example.app_tuni_dmnager.Model.Client;
 import com.example.app_tuni_dmnager.Model.DEMANDE_DEVIS;
 import com.example.app_tuni_dmnager.Model.Demenageur;
 
 
-public  class MyDatabaseHelper extends SQLiteOpenHelper {
+public  class MyDatabaseHelper extends SQLiteOpenHelper  {
     SQLiteDatabase db;
     Context context;
     private static final String DATABASE_NAME = "Tuni_demenager.db";
@@ -224,8 +228,8 @@ public int deleteDataNew(int id) {
             Toast.makeText(context, "Added Successfully!", Toast.LENGTH_SHORT).show();
         }
     }
-
-    public boolean login(String email , String password){
+/*
+    public Client login(String email , String password){
 
         SQLiteDatabase db = this.getWritableDatabase();
         String [] columns = { KEY_ROWID };
@@ -241,6 +245,8 @@ public int deleteDataNew(int id) {
         else
             return false;
     }
+*/
+
 
 
 }
