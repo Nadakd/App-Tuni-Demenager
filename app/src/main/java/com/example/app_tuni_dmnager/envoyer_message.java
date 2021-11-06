@@ -7,28 +7,25 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.app_tuni_dmnager.BD.MyDatabaseHelper;
+import com.example.app_tuni_dmnager.DAO.MessageDataSource;
 
 public class envoyer_message  extends AppCompatActivity {
 
     EditText contenu , sujet ;
-
-
-    // Spinner spCat ;
-
-
     String  contenu1 , sujet1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.envoyer_message);
         contenu = (EditText)findViewById(R.id.id_contenu_msg_dem);
         sujet = (EditText)findViewById(R.id.id_sujet_msg_dem);
-
-        //  spCat = (Spinner)findViewById(R.id.spCateg);
+        int clientid= getSharedPreferences("id",MODE_PRIVATE).getInt("id1",0);
 
         Button send = (Button)findViewById(R.id.env_msg_dem);
         send.setOnClickListener(new View.OnClickListener() {
@@ -43,20 +40,17 @@ public class envoyer_message  extends AppCompatActivity {
                     sujet.setError("SVP saisir le sujet");
                     return;
                 }
-
-
                 if (contenu1.equals("")) {
                     contenu.setError("SVP saisir votre message");
                     return;
                 }
-              // insertion dans la base de donée
-                MyDatabaseHelper myDB = new MyDatabaseHelper(envoyer_message.this);
-                myDB.addMessage(sujet.getText().toString().trim(),contenu.getText().toString().trim());
-
+              // insertion dans la base de donnée
+              //  MyDatabaseHelper myDB = new MyDatabaseHelper(envoyer_message.this);
+                MessageDataSource msgdata=new MessageDataSource(envoyer_message.this);
+                msgdata.addMessage(sujet.getText().toString().trim(),contenu.getText().toString().trim(),clientid);
                 Intent intent = new Intent(envoyer_message.this, listmessage.class);
+                Toast.makeText(envoyer_message.this, "Added Successfully!", Toast.LENGTH_SHORT).show();
                 startActivity(intent);
-
-
 
             }
         });
@@ -98,7 +92,11 @@ public class envoyer_message  extends AppCompatActivity {
                 this.startActivity(intent4);
                 finish();
                 return true;
-
+            case R.id.menu_demandedem:
+                Intent intent6 = new Intent(this, List_demande_demenagement.class);
+                this.startActivity(intent6);
+                finish();
+                return true;
             default:
 
                 return super.onOptionsItemSelected(item);

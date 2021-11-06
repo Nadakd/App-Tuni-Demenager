@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/id_lineara_devis"
+    android:id="@+id/id_lineara_demande_demenagement"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     >
 
     <ListView
-        android:id="@+id/list_devis"
+        android:id="@+id/dem"
         android:layout_width="match_parent"
-        android:layout_height="483dp"
+        android:layout_height="match_parent"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:divider="#6a6c6e"
-        android:dividerHeight="3dp" />
-
-
+        android:dividerHeight="3dp" /> />
 </LinearLayout>

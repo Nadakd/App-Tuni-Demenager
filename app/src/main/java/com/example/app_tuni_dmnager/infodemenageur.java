@@ -38,7 +38,8 @@ public class infodemenageur extends AppCompatActivity {
          int passeddemID = previousIntent.getIntExtra(Demenageur.Demenageur_details_EXTRA, -1);
          selecteddem = Demenageur.getdemForID(passeddemID);
          MyDatabaseHelper myDatabaseHelper = MyDatabaseHelper.instanceOfDatabase(this);
-        text_nomprenom1.setText(selecteddem.getNom_prenom());
+      //   int id=selecteddem.getId();
+        text_nomprenom1.setText(selecteddem.getNom_prenom()+"  "+ String.valueOf(selecteddem.getId()));
         text_num_tlf_dem1.setText(String.valueOf(selecteddem.getTlf()));
         Email_dem1.setText(selecteddem.getEmail());
         villedem1.setText(selecteddem.getVille());
@@ -50,8 +51,8 @@ public class infodemenageur extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-
-                Intent i=new Intent(infodemenageur.this,envoyer_demande_devis_dem.class);
+                Intent i = new Intent(getApplicationContext(), envoyer_demande_devis_dem.class);
+                i.putExtra(Demenageur.Demenageur_details_EXTRA,selecteddem.getId());
                 startActivity(i);
 
             }
@@ -87,7 +88,7 @@ public class infodemenageur extends AppCompatActivity {
                 finish();
                 return true;
             case R.id.menu_demande_devis:
-                Intent intent3 = new Intent(this,devis.class);
+                Intent intent3 = new Intent(this,liste_demande_devis_demenagement.class);
                 this.startActivity(intent3);
                 finish();
                 return true;
@@ -96,7 +97,11 @@ public class infodemenageur extends AppCompatActivity {
                 this.startActivity(intent4);
                 finish();
                 return true;
-
+            case R.id.menu_demandedem:
+                Intent intent6 = new Intent(this, List_demande_demenagement.class);
+                this.startActivity(intent6);
+                finish();
+                return true;
 
             default:
 

@@ -2,12 +2,17 @@ package com.example.app_tuni_dmnager.Adapter;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
@@ -20,28 +25,38 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.app_tuni_dmnager.Model.Message;
 import com.example.app_tuni_dmnager.BD.MyDatabaseHelper;
 import com.example.app_tuni_dmnager.R;
+import com.example.app_tuni_dmnager.liste_demande_devis_demenagement;
+import com.example.app_tuni_dmnager.listmessage;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Message_Adapter extends RecyclerView.Adapter<Message_Adapter.MyViewHolder> {
     Activity activity;
     private Context context;
     private ArrayList id, Sujet, Contenu;
-    ArrayList<String> msgs;
-   ArrayList<Message> ArrayListmsg;
+
+   private ArrayList<Message> msgs ;
     SQLiteDatabase sqLiteDatabase;
+    MyDatabaseHelper dbhelper;
+    private Cursor mCursor;
 
-    public Message_Adapter(Activity activity,ArrayList<String> msgs){
+
+    public Message_Adapter(Activity activity,ArrayList<Message> msgs){
         this.activity = activity;
-        this.msgs = msgs;
-
+         this.msgs = msgs;
+      dbhelper=new MyDatabaseHelper (context);
     }
+
+
     public Message_Adapter(Activity activity, Context context, ArrayList id, ArrayList Sujet, ArrayList Contenu){
         this.activity = activity;
         this.context = context;
         this.id = id;
         this.Sujet = Sujet;
         this.Contenu = Contenu;
+        dbhelper=new MyDatabaseHelper (context);
+       // msgs = new ArrayList<>();
     }
 
 
@@ -51,51 +66,40 @@ public class Message_Adapter extends RecyclerView.Adapter<Message_Adapter.MyView
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.item_message, parent, false);
-        return new MyViewHolder(view);
+        View itemView = inflater.inflate(R.layout.item_message, parent, false);
+        return new MyViewHolder(itemView);
     }
 
 
 
     @Override
-    public void onBindViewHolder(@NonNull final MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
-
+    public void onBindViewHolder( @NonNull  MyViewHolder holder,final int position) {
+//get data
+        // Message msg=msgs.get(position);
         holder.item_id_txt.setText(String.valueOf(id.get(position)));
         holder.item_Sujet_txt.setText(String.valueOf(Sujet.get(position)));
         holder.item_Contenu_txt.setText(String.valueOf(Contenu.get(position)));
-        holder.image_delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-                PopupMenu popupMenu=new PopupMenu(context,holder.image_delete);
-                popupMenu.inflate(R.menu.flow_menu);
-                final Message msg=ArrayListmsg.get(position);
-                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem menuItem) {
-                        switch (menuItem.getItemId()){
-                            case R.id.delete:
-                                //
-                                MyDatabaseHelper db=new MyDatabaseHelper(context);
-                              sqLiteDatabase=db.getReadableDatabase();
-                              int recdelete=sqLiteDatabase.delete("MESSAGE","id="+msg.getId(),null);
-                              if(recdelete!=-1){
-                                  Toast.makeText(context,"data deleted",Toast.LENGTH_SHORT).show();
-                                  ArrayListmsg.remove(position);
-                                  notifyDataSetChanged();
-                              }
-                              break;
-                            default:
-                                return false;
-                        }return false;
-                    }
-                });
-                popupMenu.show();
-            }
-        });
-//Recyclerview onClickListener
+/* MyDatabaseHelper db=new MyDatabaseHelper(context);
+                int sid = singleItem.getId();
+                db.deletemsg(sid);
+                msgs.remove(singleItem);
+                notifyDataSetChanged();*/
+
+    }
 
 
+
+    public void swapCursor(Cursor newCursor) {
+        if (mCursor != null) {
+            mCursor.close();
+        }
+
+        mCursor = newCursor;
+
+        if (newCursor != null) {
+            notifyDataSetChanged();
+        }
     }
 
     @Override
@@ -107,7 +111,8 @@ public class Message_Adapter extends RecyclerView.Adapter<Message_Adapter.MyView
         TextView item_id_txt, item_Sujet_txt, item_Contenu_txt;
         LinearLayout mainLayout;
         RecyclerView recyclerView;
-        ImageButton image_delete;
+
+       // ImageButton image_delete;
 
 
      public  MyViewHolder(@NonNull View itemView) {
@@ -116,7 +121,7 @@ public class Message_Adapter extends RecyclerView.Adapter<Message_Adapter.MyView
             item_Sujet_txt = itemView.findViewById(R.id.item_Sujet);
             item_Contenu_txt = itemView.findViewById(R.id.item_Contenu);
             mainLayout = itemView.findViewById(R.id.mainLayout);
-            image_delete =(ImageButton) itemView.findViewById(R.id.menu_delete);
+
             recyclerView= itemView.findViewById(R.id.recyclerView);
         }
     }}

@@ -6,71 +6,67 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.app_tuni_dmnager.Adapter.DEMANDE_DEVIS_Adapter;
+import com.example.app_tuni_dmnager.Adapter.Demande_demenagement_Adapter;
 import com.example.app_tuni_dmnager.BD.MyDatabaseHelper;
 import com.example.app_tuni_dmnager.Model.DEMANDE_DEVIS;
+import com.example.app_tuni_dmnager.Model.Demande_Demenagement;
+import com.example.app_tuni_dmnager.Model.Devis;
 
-import java.util.List;
-
-public class liste_demande_devis_demenagement extends AppCompatActivity {
-
+public class List_demande_demenagement extends AppCompatActivity {
     MyDatabaseHelper db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.liste_demande_devis_demenagement);
-        ListView listdemandedevis = (ListView)findViewById(R.id.list_demande_devis);
-        db=new MyDatabaseHelper(liste_demande_devis_demenagement.this);
+        setContentView(R.layout.list_demande_demenagement);
+
+        ListView listdemandedemenagement = (ListView)findViewById(R.id.dem);
+        db=new MyDatabaseHelper(List_demande_demenagement.this);
         db=MyDatabaseHelper.instanceOfDatabase(this);
-        db.ListeDemandeDevis();
-        DEMANDE_DEVIS_Adapter demandeAdapter = new DEMANDE_DEVIS_Adapter(getApplicationContext(),DEMANDE_DEVIS.demande_devisArrayList);
-        listdemandedevis.setAdapter(demandeAdapter);
+
+        db.demandedemenagementListArray();
+        Demande_demenagement_Adapter demandedemAdapter = new Demande_demenagement_Adapter(getApplicationContext(), Demande_Demenagement.DemandeDemenagementArrayList);
+        listdemandedemenagement.setAdapter(demandedemAdapter);
 
 
-        listdemandedevis.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listdemandedemenagement.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(liste_demande_devis_demenagement.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(List_demande_demenagement.this);
                 builder.setMessage("Are you sure to delete ?");
 
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        DEMANDE_DEVIS dv = DEMANDE_DEVIS.demande_devisArrayList.get(position);
+                        Demande_Demenagement dv = Demande_Demenagement.DemandeDemenagementArrayList.get(position);
                         int sid = dv.getId();
-                        int result = db.deletedemandedevis(sid);
+                        int result = db.deletedemandedemanagement(sid);
 
                         if( result > 0)
                         {
-                            Toast.makeText(liste_demande_devis_demenagement.this, "Demande deleted", Toast.LENGTH_SHORT).show();
-                            DEMANDE_DEVIS.demande_devisArrayList.remove(dv);
-                            demandeAdapter.notifyDataSetChanged();
+                            Toast.makeText(List_demande_demenagement.this, "Demande deleted", Toast.LENGTH_SHORT).show();
+                            Demande_Demenagement.DemandeDemenagementArrayList.remove(dv);
+                            demandedemAdapter.notifyDataSetChanged();
                         }
                         else
                         {
-                            Toast.makeText(liste_demande_devis_demenagement.this, "Something went wrong", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(List_demande_demenagement.this, "Something went wrong", Toast.LENGTH_SHORT).show();
                         }
                     }
-        });
+                });
                 builder.setNegativeButton("No", null);
                 builder.show();
 
             }
         });
+
     }
-
-
-
-
 
 
     @Override

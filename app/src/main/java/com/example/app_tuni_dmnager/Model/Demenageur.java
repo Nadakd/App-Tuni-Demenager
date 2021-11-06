@@ -13,11 +13,12 @@ public class Demenageur {
     private String ville;
     public static String Demenageur_details_EXTRA =  "demdetails";
 
-    public static Demenageur getdemForID(int passedNoteID)
+
+    public static Demenageur getdemForID(int ID)
     {
         for (Demenageur dem : demArrayList)
         {
-            if(dem.getId() == passedNoteID)
+            if(dem.getId() == ID)
                 return dem;
         }
 

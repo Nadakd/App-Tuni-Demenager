@@ -1,6 +1,7 @@
 package com.example.app_tuni_dmnager.Model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Client implements Serializable {
     private int id;
@@ -13,6 +14,8 @@ public class Client implements Serializable {
     private String email;
     private String Password;
     private String ConfirmPassword;
+
+    public static ArrayList<Client> clientArrayList = new ArrayList<>();
 
     public Client() {
     }

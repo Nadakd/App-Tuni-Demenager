@@ -13,6 +13,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.app_tuni_dmnager.BD.MyDatabaseHelper;
+import com.example.app_tuni_dmnager.DAO.ClientDataSource;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;
@@ -141,10 +142,11 @@ public class inscription extends AppCompatActivity {
                     return;
                 }
 
-                MyDatabaseHelper myDB = new MyDatabaseHelper(inscription.this);
+                ClientDataSource myDB = new ClientDataSource(inscription.this);
                 myDB.Inscription(nom_prenom1.trim(),civilite.trim(),vil1.trim(),Integer.valueOf(cin.getText().toString().trim()),Integer.valueOf(age.getText().toString().trim()),Integer.valueOf(tlf.getText().toString().trim()),email1.trim(),password1.trim(),conf1.trim());
 
                 Intent intent = new Intent(inscription.this,connexion.class);
+                Toast.makeText(inscription.this, "Added Successfully!", Toast.LENGTH_SHORT).show();
                 startActivity(intent);
 
 

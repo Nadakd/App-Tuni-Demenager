@@ -2,18 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:id="@+id/menu_home"
-        android:icon="@drawable/home"
-        android:title="Accueil"
-        app:showAsAction="always">
-    </item>
+        <item android:id="@+id/menu_home"
+           android:icon="@drawable/home"
+           android:title="Accueil"
+           app:showAsAction="always">
+        </item>
 
         <item android:id="@+id/menu_profil"
             android:icon="@drawable/profil_icone"
             android:title="Profil"
             app:showAsAction="always">
         </item>
-
 
         <item android:id="@+id/menu_decon"
             android:icon="@drawable/deconnexion"
@@ -22,10 +21,20 @@
 
     <item app:showAsAction="always" android:icon="@drawable/menu_icon" android:title="menu">
         <menu>
-        <item android:id="@+id/menu_demande_devis"
+           <item android:id="@+id/menu_demande_devis"
             android:icon="@drawable/icone_demande"
             android:title="Demande devis"
             app:showAsAction="ifRoom"></item>
+
+            <item android:id="@+id/menudevis"
+                android:icon="@drawable/icone_demande"
+                android:title="Devis"
+                app:showAsAction="ifRoom"></item>
+
+            <item android:id="@+id/menu_demandedem"
+                android:icon="@drawable/icone_demande"
+                android:title="Demande de démenagement"
+                app:showAsAction="ifRoom"></item>
 
             <item android:id="@+id/menu_message"
                 android:icon="@drawable/messa"

@@ -1,17 +1,30 @@
 package com.example.app_tuni_dmnager.Model;
 
 
+import java.util.ArrayList;
+
 public class Message {
     private int id;
     private String Sujet;
     private String Contenu;
+    private int clientid;
+
+    public static ArrayList<Message> msgArrayList = new ArrayList<>();
 
     public Message() {
 
     }
-    public Message(String sujet, String contenu) {
+
+    public Message(int id, String sujet, String contenu, int clientid) {
+        this.id = id;
         Sujet = sujet;
         Contenu = contenu;
+        this.clientid = clientid;
+    }
+    public Message(String sujet, String contenu, int clientid) {
+        Sujet = sujet;
+        Contenu = contenu;
+        this.clientid = clientid;
     }
 
     @Override
@@ -23,11 +36,7 @@ public class Message {
                 '}';
     }
 
-    public Message(int id, String sujet, String contenu) {
-        this.id = id;
-        Sujet = sujet;
-        Contenu = contenu;
-    }
+
 
     public int getId() {
         return id;
@@ -51,5 +60,13 @@ public class Message {
 
     public void setContenu(String contenu) {
         Contenu = contenu;
+    }
+
+    public int getClientid() {
+        return clientid;
+    }
+
+    public void setClientid(int clientid) {
+        this.clientid = clientid;
     }
 }

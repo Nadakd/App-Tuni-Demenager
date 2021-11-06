@@ -7,7 +7,8 @@
     android:layout_width="match_parent"
     android:layout_height="115dp"
     android:background="@color/colorwhite"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:divider="#6a6c6e">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -21,7 +22,8 @@
             android:weightSum="4"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="12dp">
+            tools:layout_editor_absoluteX="12dp"
+            >
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -118,13 +120,13 @@
 
             </LinearLayout>
 
-            <ImageButton
-                android:id="@+id/menu_delete"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+            <ImageView
+                android:id="@+id/delete"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
-                android:src="@drawable/ic_baseline_more_vert_24" />
+                android:background="@drawable/delete" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

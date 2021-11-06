@@ -6,18 +6,24 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.app_tuni_dmnager.BD.MyDatabaseHelper;
+import com.example.app_tuni_dmnager.Model.Demenageur;
+import com.example.app_tuni_dmnager.Model.Devis;
+
 public class envoyer_demande_demenagement extends AppCompatActivity {
 
-    Button date_dem;
+    TextView date_dem;
     String  date_dem1 ;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.envoyer_demande_demenagement);
-        date_dem = (Button)findViewById(R.id.date_demenagement1);
+        date_dem = (TextView)findViewById(R.id.date);
         Button send = (Button)findViewById(R.id.envoyer_dem1);
+
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -27,7 +33,19 @@ public class envoyer_demande_demenagement extends AppCompatActivity {
 
                     return;
                 }
+                //clé client connecté
+                int clientid= getSharedPreferences("id",MODE_PRIVATE).getInt("id1",0);
+                // clé etrangére de devis
+                Intent previousIntent = getIntent();
+                int passeddemID = previousIntent.getIntExtra(Devis.Devis_EXTRA, -1);
+                Devis selecteddem = Devis.getdemForID(passeddemID);
+                int iddem=selecteddem.getId();
+                String nom=selecteddem.getNom_prenom();
 
+                MyDatabaseHelper myDB = new MyDatabaseHelper(envoyer_demande_demenagement.this);
+                myDB.envoyerdemendedem(date_dem.getText().toString().trim(),clientid,iddem);
+                Intent intent = new Intent(envoyer_demande_demenagement.this, envoyer_demande_demenagement.class);
+                startActivity(intent);
             }
         });
     }
@@ -70,8 +88,16 @@ public class envoyer_demande_demenagement extends AppCompatActivity {
                 this.startActivity(intent4);
                 finish();
                 return true;
-
-
+            case R.id.menudevis:
+                Intent intent5 = new Intent(this,list_devis.class);
+                this.startActivity(intent5);
+                finish();
+                return true;
+            case R.id.menu_demandedem:
+                Intent intent6 = new Intent(this, List_demande_demenagement.class);
+                this.startActivity(intent6);
+                finish();
+                return true;
 
             default:
 

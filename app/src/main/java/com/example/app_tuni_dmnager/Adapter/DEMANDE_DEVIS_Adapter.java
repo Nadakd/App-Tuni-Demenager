@@ -41,7 +41,7 @@ public class DEMANDE_DEVIS_Adapter extends ArrayAdapter<DEMANDE_DEVIS> {
         TextView distancedevis1 = convertView.findViewById(R.id.distancedevis1);
         TextView etagedep = convertView.findViewById(R.id.etagedep);
         TextView etagearr = convertView.findViewById(R.id.etagearr);
-
+        TextView nom = convertView.findViewById(R.id.nom_pren_devis);
 
         id.setText(String.valueOf(id.getId()));
         adresse_depart.setText(dems.getAdresse_depart());
@@ -55,7 +55,7 @@ public class DEMANDE_DEVIS_Adapter extends ArrayAdapter<DEMANDE_DEVIS> {
         distancedevis1.setText(dems.getDistance());
         etagedep.setText(dems.getEtage_dep());
         etagearr.setText(dems.getEtage_arv());
-
+        nom.setText(String.valueOf(dems.getClientid()));
         return convertView;
     }
 

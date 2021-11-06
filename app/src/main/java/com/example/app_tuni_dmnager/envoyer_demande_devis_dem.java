@@ -9,10 +9,14 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.app_tuni_dmnager.BD.MyDatabaseHelper;
+import com.example.app_tuni_dmnager.DAO.DemandeDevisDataSource;
+import com.example.app_tuni_dmnager.Model.DEMANDE_DEVIS;
+import com.example.app_tuni_dmnager.Model.Demenageur;
 
 import java.util.ArrayList;
 
@@ -52,6 +56,7 @@ public class envoyer_demande_devis_dem  extends AppCompatActivity {
         ascenseur_dep = (Spinner)findViewById(R.id.spinner_ascenseur_dep);
         ascenseur_arr = (Spinner)findViewById(R.id.spinner_ascenseur_arr);
         Button send = (Button)findViewById(R.id.env_dem_devis);
+
         // charger le spinner
 
         ArrayAdapter adapter1= ArrayAdapter.createFromResource(this, R.array.choix_ville, android.R.layout.simple_spinner_item);
@@ -119,12 +124,20 @@ public class envoyer_demande_devis_dem  extends AppCompatActivity {
                     dem_cdepos_arr.setBackgroundResource(R.drawable.edit_text_normal_gris_erreur);
                     return;
                 }
+                //clé de client connecté
+                int clientid= getSharedPreferences("id",MODE_PRIVATE).getInt("id1",0);
 
-// insertion dans la base de donée
-                MyDatabaseHelper myDB = new MyDatabaseHelper(envoyer_demande_devis_dem.this);
-                myDB.envoyer_demande_devis(dem_adr_dep_devis1.trim(),Integer.valueOf(dem_cdepos_arr.getText().toString().trim()),ville_dep_devis1.trim(),etage_dep1.trim(),ascenseur_dep1.trim(),dem_adr_arr_devis1.trim(),Integer.valueOf(dem_cdepos_arr.getText().toString().trim()),ville_arr_devis1.trim(),etage_arr1.trim(),ascenseur_arr1.trim(),distance1.trim());
-
+                //clé etrangére de demenageur
+                Intent previousIntent = getIntent();
+                int passeddemID = previousIntent.getIntExtra(Demenageur.Demenageur_details_EXTRA, -1);
+                Demenageur selecteddem = Demenageur.getdemForID(passeddemID);
+                int iddem=selecteddem.getId();
+                String nom=selecteddem.getNom_prenom();
+         // insertion dans la base de donée
+                DemandeDevisDataSource myDB = new DemandeDevisDataSource(envoyer_demande_devis_dem.this);
+                myDB.envoyer_demande_devis(dem_adr_dep_devis1.trim(),Integer.valueOf(dem_cdepos_dep.getText().toString().trim()),ville_dep_devis1.trim(),etage_dep1.trim(),ascenseur_dep1.trim(),dem_adr_arr_devis1.trim(),Integer.valueOf(dem_cdepos_arr.getText().toString().trim()),ville_arr_devis1.trim(),etage_arr1.trim(),ascenseur_arr1.trim(),distance1.trim(),iddem,clientid);
                 Intent intent = new Intent(envoyer_demande_devis_dem.this, liste_demande_devis_demenagement.class);
+                Toast.makeText(envoyer_demande_devis_dem.this, "Added Successfully!", Toast.LENGTH_SHORT).show();
                 startActivity(intent);
 
 
@@ -171,7 +184,16 @@ public class envoyer_demande_devis_dem  extends AppCompatActivity {
                 this.startActivity(intent4);
                 finish();
                 return true;
-
+            case R.id.menudevis:
+                Intent intent5 = new Intent(this,list_devis.class);
+                this.startActivity(intent5);
+                finish();
+                return true;
+            case R.id.menu_demandedem:
+                Intent intent6 = new Intent(this, List_demande_demenagement.class);
+                this.startActivity(intent6);
+                finish();
+                return true;
             default:
 
                 return super.onOptionsItemSelected(item);

@@ -1,30 +1,32 @@
 package com.example.app_tuni_dmnager.BD;
 
-import static android.content.Context.MODE_PRIVATE;
-
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
-import androidx.appcompat.app.AppCompatActivity;
-import com.example.app_tuni_dmnager.Model.Client;
+
 import com.example.app_tuni_dmnager.Model.DEMANDE_DEVIS;
+import com.example.app_tuni_dmnager.Model.Demande_Demenagement;
 import com.example.app_tuni_dmnager.Model.Demenageur;
+import com.example.app_tuni_dmnager.Model.Devis;
 
 
-public  class MyDatabaseHelper extends SQLiteOpenHelper  {
-    SQLiteDatabase db;
+public class MyDatabaseHelper extends SQLiteOpenHelper  {
+
+    private SQLiteDatabase db;
     Context context;
     private static final String DATABASE_NAME = "Tuni_demenager.db";
     private static final int DATABASE_VERSION = 1;
-    private static final String TABLE1 = "MESSAGE";
+    public static final String TABLE1 = "MESSAGE";
     private static final String TABLE2 = "DEMENAGEUR";
     private static final String TABLE3 = "DEMANDE_DEVIS";
     private static final String TABLE4 = "CLIENT";
-    private static final String KEY_ROWID = "_id";
+    private static final String TABLE5 = "DEVIS";
+    private static final String TABLE6 = "DEMANDE_DEMENAGEMENT";
+    public static final String KEY_ROWID = "_id";
     private static MyDatabaseHelper myDatabaseHelper;
 
     public MyDatabaseHelper(Context context) {
@@ -37,15 +39,19 @@ public  class MyDatabaseHelper extends SQLiteOpenHelper  {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        String sql1 = "CREATE TABLE MESSAGE (_id INTEGER PRIMARY KEY AUTOINCREMENT,Sujet TEXT,Contenu TEXT)";
+        String sql1 = "CREATE TABLE MESSAGE (_id INTEGER PRIMARY KEY AUTOINCREMENT,Sujet TEXT,Contenu TEXT,clientid Integer,FOREIGN KEY (clientid) REFERENCES CLIENT ("+KEY_ROWID+"))";
         String sql2 = "CREATE TABLE DEMENAGEUR (_id INTEGER PRIMARY KEY AUTOINCREMENT,nom_prenom TEXT,email TEXT,cin INTEGER,tlf INTEGER,ville TEXT)";
-        String sql3 = "CREATE TABLE DEMANDE_DEVIS (_id INTEGER PRIMARY KEY AUTOINCREMENT,adresse_depart TEXT,code_postal_dep INTEGER,ville_depart TEXT,etage_dep TEXT,Ascenseur_dep TEXT,adresse_arrive TEXT,code_postal_arv INTEGER,ville_arv TEXT,etage_arv TEXT,Ascenseur_arv TEXT,distance TEXT)";
+        String sql3 = "CREATE TABLE DEMANDE_DEVIS (_id INTEGER PRIMARY KEY AUTOINCREMENT,adresse_depart TEXT,code_postal_dep INTEGER,ville_depart TEXT,etage_dep TEXT,Ascenseur_dep TEXT,adresse_arrive TEXT,code_postal_arv INTEGER,ville_arv TEXT,etage_arv TEXT,Ascenseur_arv TEXT,distance TEXT,demenageur_id Integer,clientid Integer,FOREIGN KEY (demenageur_id) REFERENCES DEMENAGEUR (\"+KEY_ROWID+\"),FOREIGN KEY (clientid) REFERENCES CLIENT (\"+KEY_ROWID+\"))";
         String sql4 = "CREATE TABLE CLIENT (_id INTEGER PRIMARY KEY AUTOINCREMENT,nom_prenom TEXT,civilité TEXT,ville TEXT,cin INTEGER,age INTEGER,tlf INTEGER,email TEXT,Password TEXT,ConfirmPassword TEXT)";
+        String sql5 = "CREATE TABLE DEVIS (_id INTEGER PRIMARY KEY AUTOINCREMENT,Prix INTEGER,nom_prenom TEXT,tlfdem INTEGER,villedepart TEXT,ville_arv TEXT,clientid Integer,FOREIGN KEY (clientid) REFERENCES CLIENT (\"+KEY_ROWID+\"))";
+        String sql6 = "CREATE TABLE DEMANDE_DEMENAGEMENT (_id INTEGER PRIMARY KEY AUTOINCREMENT,Date TEXT,clientid Integer,devisid Integer,FOREIGN KEY (clientid) REFERENCES CLIENT (\"+KEY_ROWID+\"),FOREIGN KEY (devisid) REFERENCES DEVIS (\"+KEY_ROWID+\"))";
 
         db.execSQL(sql1);
         db.execSQL(sql2);
         db.execSQL(sql3);
         db.execSQL(sql4);
+        db.execSQL(sql5);
+        db.execSQL(sql6);
     }
 
 
@@ -56,69 +62,55 @@ public  class MyDatabaseHelper extends SQLiteOpenHelper  {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE2);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE3);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE4);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE5);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE6);
         onCreate(db);
     }
 
 
 
+    public int deletedevis(int id) {
 
-
-    public void addMessage(String Sujet, String Contenu) {
         SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues cv = new ContentValues();
+        return db.delete(TABLE5,KEY_ROWID +" =?",new String[]{String.valueOf(id)});
 
-        cv.put("Sujet", Sujet);
-        cv.put("Contenu", Contenu);
-        long result = db.insert("MESSAGE", null, cv);
-        if (result == -1) {
-            Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(context, "Added Successfully!", Toast.LENGTH_SHORT).show();
-        }
     }
-//--------------------------------------display
+    public int deletemsg(int id) {
 
-    public Cursor readAllDataMessage() {
-        String query = "SELECT * FROM MESSAGE";
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        Cursor cursor = null;
-        if (db != null) {
-            cursor = db.rawQuery(query, null);
-        }
-        return cursor;
-    }
-
-
-//----------------------------------delete
-
-    public int deleteOneMsg(int msg_id) {
         SQLiteDatabase db = this.getWritableDatabase();
-        return db.delete(TABLE1, "_id=?", new String[]{String.valueOf(msg_id)});
+        return db.delete(TABLE1,KEY_ROWID +" =?",new String[]{String.valueOf(id)});
 
     }
 
-    //-----------------insert dem
-    public void addDemenageur(String nom_prenom, String email, int cin, int tlf, String ville) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues cv = new ContentValues();
 
-        cv.put("nom_prenom", nom_prenom);
-        cv.put("email", email);
-        cv.put("cin", cin);
-        cv.put("tlf", tlf);
-        cv.put("ville", ville);
-        db.insert("Demenageur", null, cv);
 
-    }
-
-    //-----------------Display
     public static MyDatabaseHelper instanceOfDatabase(Context context) {
         if (myDatabaseHelper == null)
             myDatabaseHelper = new MyDatabaseHelper(context);
 
         return myDatabaseHelper;
     }
+
+    public void demandedemenagementListArray() {
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+
+        try (Cursor result = sqLiteDatabase.rawQuery("select dem.Date ,dev.nom_prenom From DEMANDE_DEMENAGEMENT dem JOIN DEVIS dev ON dem.devisid = dev." + KEY_ROWID  , null)) {
+            if (result.getCount() != 0) {
+                while (result.moveToNext()) {
+                     int id = result.getInt(0);
+                    String Date = result.getString(1);
+                    String nomdem = result.getString(2);
+
+                    Demande_Demenagement dem = new Demande_Demenagement(Date,nomdem);
+                    Demande_Demenagement.DemandeDemenagementArrayList.add(dem);
+                }
+            }
+        }
+
+
+    }
+
+    //-----------------Display
 
     public void populateDemListArray() {
         SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
@@ -151,35 +143,15 @@ public  class MyDatabaseHelper extends SQLiteOpenHelper  {
 
     }
 
-    //   -----------envoyer demande de devis
-    public void envoyer_demande_devis(String adresse_depart, Integer code_postal_dep, String ville_depart, String etage_dep, String Ascenseur_dep, String adresse_arrive, Integer code_postal_arv, String ville_arv, String etage_arv, String Ascenseur_arv, String distance) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues cv = new ContentValues();
-        cv.put("adresse_depart", adresse_depart);
-        cv.put("code_postal_dep", code_postal_dep);
-        cv.put("ville_depart", ville_depart);
-        cv.put("etage_dep", etage_dep);
-        cv.put("Ascenseur_dep", Ascenseur_dep);
-        cv.put("adresse_arrive", adresse_arrive);
-        cv.put("code_postal_arv", code_postal_arv);
-        cv.put("ville_arv", ville_arv);
-        cv.put("etage_arv", etage_arv);
-        cv.put("Ascenseur_arv", Ascenseur_arv);
-        cv.put("distance", distance);
 
-        long result = db.insert("DEMANDE_DEVIS", null, cv);
-        if (result == -1) {
-            Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(context, "Added Successfully!", Toast.LENGTH_SHORT).show();
-        }
-    }
 //-----------------------Liste demande devis
-
+DEMANDE_DEVIS dv = new DEMANDE_DEVIS();
+//"SELECT id,adresse_depart,code_postal_dep,ville_depart,etage_dep,ascenseur_dep,adresse_arrive,code_postal_arv,ville_arv,etage_arv,ascenseur_arv,distance,dm.nom_prenom,clientid FROM demande_devis dv ,demenageur dm WHERE dv.demenageur_id=dm.id
     public void ListeDemandeDevis() {
         SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
 
-        try (Cursor result = sqLiteDatabase.rawQuery("SELECT * FROM " + TABLE3, null)) {
+        try (Cursor result = sqLiteDatabase.rawQuery("SELECT * FROM DEMANDE_DEVIS  ", null)) {
+
             if (result.getCount() != 0) {
                 while (result.moveToNext()) {
                     int id = result.getInt(0);
@@ -194,62 +166,68 @@ public  class MyDatabaseHelper extends SQLiteOpenHelper  {
                     String etage_arv = result.getString(9);
                     String ascenseur_arv = result.getString(10);
                     String distance = result.getString(11);
-                    DEMANDE_DEVIS dem = new DEMANDE_DEVIS(id, adresse_depart, code_postal_dep, ville_depart, etage_dep, ascenseur_dep, adresse_arrive, code_postal_arv, ville_arv, etage_arv, ascenseur_arv, distance);
+
+                    int clientid = result.getInt(12);
+                    DEMANDE_DEVIS dem = new DEMANDE_DEVIS(id,adresse_depart,code_postal_dep, ville_depart, etage_dep, ascenseur_dep, adresse_arrive, code_postal_arv, ville_arv, etage_arv, ascenseur_arv,distance,clientid);
                     DEMANDE_DEVIS.demande_devisArrayList.add(dem);
                 }
             }
         }
     }
-//-------------------delete
-public int deleteDataNew(int id) {
-    int count = db.delete(myDatabaseHelper.TABLE1,  "id=?",new String[]{String.valueOf(id)});
-    return count;
-}
 
-//--------inscription
 
-    public void Inscription(String nom_prenom, String civilité,String ville, int cin,int age,int tlf, String email,String password,String ConfirmPassword) {
-        SQLiteDatabase db = this.getWritableDatabase();
 
+
+
+
+
+    public void ListDevis() {
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+
+        try (Cursor result = sqLiteDatabase.rawQuery("SELECT * FROM " + TABLE5, null)) {
+            if (result.getCount() != 0) {
+                while (result.moveToNext()) {
+                    int id = result.getInt(0);
+                    int prix = result.getInt(1);
+                    String nom_prenom = result.getString(2);
+                    int tlfdem = result.getInt(3);
+                    String villedep = result.getString(4);
+                    String villearr = result.getString(5);
+                    int iclient = result.getInt(6);
+
+                    Devis dem = new Devis(id,prix, nom_prenom, tlfdem, villedep, villearr,iclient);
+                    Devis.devisArrayList.add(dem);
+                }
+            }
+        }
+    }
+    public void envoyerdemendedem(String Date,int clientid,int devisid) {
+
+        db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
-        cv.put("nom_prenom", nom_prenom);
-        cv.put("civilité", civilité);
-        cv.put("ville", ville);
-        cv.put("cin", cin);
-        cv.put("age", age);
-        cv.put("tlf", tlf);
-        cv.put("email", email);
-        cv.put("password", password);
-        cv.put("ConfirmPassword",ConfirmPassword);
-        long result=db.insert("CLIENT", null, cv);
+        cv.put("Date", Date);
+        cv.put("clientid", clientid);
+        cv.put("devisid", devisid);
+        long result = db.insert("DEMANDE_DEMENAGEMENT", null, cv);
         if (result == -1) {
             Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(context, "Added Successfully!", Toast.LENGTH_SHORT).show();
         }
     }
-/*
-    public Client login(String email , String password){
+
+    public int deletedemandedevis(int id) {
 
         SQLiteDatabase db = this.getWritableDatabase();
-        String [] columns = { KEY_ROWID };
-        String selection =  " email =?" + " and " +  " password =?";
-        String [] selectionargs = { email , password};
-        Cursor cursor = db.query(TABLE4 , columns , selection ,selectionargs , null , null , null);
-        int count = cursor.getCount();
-        db.close();
-        cursor.close();
-        //cursor.close();
-        if (count > 0)
-            return true;
-        else
-            return false;
+        return db.delete(TABLE3,KEY_ROWID +" =?",new String[]{String.valueOf(id)});
     }
-*/
 
+    public int deletedemandedemanagement(int id) {
 
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete(TABLE6,KEY_ROWID +" =?",new String[]{String.valueOf(id)});
+    }
 
 }
-
 
 

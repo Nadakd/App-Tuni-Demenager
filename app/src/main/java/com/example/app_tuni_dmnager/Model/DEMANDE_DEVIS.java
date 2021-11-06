@@ -15,12 +15,21 @@ public class DEMANDE_DEVIS {
     private String etage_arv;
     private String Ascenseur_arv;
     private String distance;
+    private int demenageur_id;
+    private int clientid;
+    public Demenageur demenageur;
+
+    String nom1;
+
     public static ArrayList<DEMANDE_DEVIS> demande_devisArrayList = new ArrayList<>();
+    public static String Demenageur_id_EXTRA =  "demdetails";
+
 
     public DEMANDE_DEVIS() {
     }
 
-    public DEMANDE_DEVIS(int id, String adresse_depart, int code_postal_dep, String ville_depart, String etage_dep, String ascenseur_dep, String adresse_arrive, int code_postal_arv, String ville_arv, String etage_arv, String ascenseur_arv, String distance) {
+
+    public DEMANDE_DEVIS(int id, String adresse_depart, int code_postal_dep, String ville_depart, String etage_dep, String ascenseur_dep, String adresse_arrive, int code_postal_arv, String ville_arv, String etage_arv, String ascenseur_arv, String distance,int clientid) {
         this.id = id;
         this.adresse_depart = adresse_depart;
         this.code_postal_dep = code_postal_dep;
@@ -31,8 +40,21 @@ public class DEMANDE_DEVIS {
         this.code_postal_arv = code_postal_arv;
         this.ville_arv = ville_arv;
         this.etage_arv = etage_arv;
-        Ascenseur_arv = ascenseur_arv;
+        this.Ascenseur_arv = ascenseur_arv;
         this.distance = distance;
+        this.clientid =clientid ;
+
+    }
+
+
+
+
+    public Demenageur getDemenageur() {
+        return demenageur;
+    }
+
+    public void setDemenageur(Demenageur demenageur) {
+        this.demenageur = demenageur;
     }
 
     public int getId() {
@@ -129,5 +151,22 @@ public class DEMANDE_DEVIS {
 
     public void setDistance(String distance) {
         this.distance = distance;
+    }
+
+    public int getDemenageur_id() {
+        return demenageur_id;
+    }
+
+    public void setDemenageur_id(int demenageur_id) {
+        this.demenageur_id = demenageur_id;
+
+    }
+
+    public int getClientid() {
+        return clientid;
+    }
+
+    public void setClientid(int clientid) {
+        this.clientid = clientid;
     }
 }

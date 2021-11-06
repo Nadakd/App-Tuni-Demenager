@@ -10,6 +10,7 @@
         <entry key="..\:/Users/korka/AndroidStudioProjects/APP_Tuni_Dmnager/app/src/main/res/layout/accueil_tunidemenager.xml" value="0.22554347826086957" />
         <entry key="..\:/Users/korka/AndroidStudioProjects/APP_Tuni_Dmnager/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/korka/AndroidStudioProjects/APP_Tuni_Dmnager/app/src/main/res/layout/connexion.xml" value="0.2" />
+        <entry key="..\:/Users/korka/AndroidStudioProjects/APP_Tuni_Dmnager/app/src/main/res/layout/demande_demenagement.xml" value="0.1598731884057971" />
         <entry key="..\:/Users/korka/AndroidStudioProjects/APP_Tuni_Dmnager/app/src/main/res/layout/devis.xml" value="0.24094202898550723" />
         <entry key="..\:/Users/korka/AndroidStudioProjects/APP_Tuni_Dmnager/app/src/main/res/layout/empty.xml" value="0.21014492753623187" />
         <entry key="..\:/Users/korka/AndroidStudioProjects/APP_Tuni_Dmnager/app/src/main/res/layout/envoyer_demande_demenagement.xml" value="0.24094202898550723" />
@@ -18,6 +19,7 @@
         <entry key="..\:/Users/korka/AndroidStudioProjects/APP_Tuni_Dmnager/app/src/main/res/layout/ic_add.xml" value="0.2" />
         <entry key="..\:/Users/korka/AndroidStudioProjects/APP_Tuni_Dmnager/app/src/main/res/layout/infodemenageur.xml" value="0.2" />
         <entry key="..\:/Users/korka/AndroidStudioProjects/APP_Tuni_Dmnager/app/src/main/res/layout/inscription.xml" value="0.264" />
+        <entry key="..\:/Users/korka/AndroidStudioProjects/APP_Tuni_Dmnager/app/src/main/res/layout/item_demande_demenagement.xml" value="0.2" />
         <entry key="..\:/Users/korka/AndroidStudioProjects/APP_Tuni_Dmnager/app/src/main/res/layout/item_demande_devis.xml" value="0.17119565217391305" />
         <entry key="..\:/Users/korka/AndroidStudioProjects/APP_Tuni_Dmnager/app/src/main/res/layout/item_demande_devis_demenagement.xml" value="0.264" />
         <entry key="..\:/Users/korka/AndroidStudioProjects/APP_Tuni_Dmnager/app/src/main/res/layout/item_demenageur.xml" value="0.2" />
@@ -25,6 +27,8 @@
         <entry key="..\:/Users/korka/AndroidStudioProjects/APP_Tuni_Dmnager/app/src/main/res/layout/item_info_demenageur.xml" value="0.2" />
         <entry key="..\:/Users/korka/AndroidStudioProjects/APP_Tuni_Dmnager/app/src/main/res/layout/item_message.xml" value="0.2" />
         <entry key="..\:/Users/korka/AndroidStudioProjects/APP_Tuni_Dmnager/app/src/main/res/layout/layout.xml" value="0.2" />
+        <entry key="..\:/Users/korka/AndroidStudioProjects/APP_Tuni_Dmnager/app/src/main/res/layout/list_demande_demenagement.xml" value="0.14266304347826086" />
+        <entry key="..\:/Users/korka/AndroidStudioProjects/APP_Tuni_Dmnager/app/src/main/res/layout/list_devis.xml" value="0.19293478260869565" />
         <entry key="..\:/Users/korka/AndroidStudioProjects/APP_Tuni_Dmnager/app/src/main/res/layout/liste_demande_devis_demenagement.xml" value="0.17119565217391305" />
         <entry key="..\:/Users/korka/AndroidStudioProjects/APP_Tuni_Dmnager/app/src/main/res/layout/listmessage.xml" value="0.21014492753623187" />
         <entry key="..\:/Users/korka/AndroidStudioProjects/APP_Tuni_Dmnager/app/src/main/res/layout/menu_client.xml" value="0.2" />

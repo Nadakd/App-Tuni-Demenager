@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/id_lineara_demande_devis"
+    android:id="@+id/id_lineara_devis"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
->
+    android:orientation="vertical" >
 
     <ListView
-        android:id="@+id/list_demande_devis"
+        android:id="@+id/list_devis"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="748dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:divider="#6a6c6e"
         android:dividerHeight="3dp" />
+
+
 </LinearLayout>

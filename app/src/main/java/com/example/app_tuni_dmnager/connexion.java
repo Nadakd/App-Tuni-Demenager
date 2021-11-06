@@ -83,8 +83,9 @@ public class connexion extends AppCompatActivity {
                 String login =login(email,password);
                 if (null!=login) {
                     Toast.makeText(connexion.this, "Login Successfully", Toast.LENGTH_SHORT).show();
-                    Intent intent=new Intent(connexion.this, profil_client.class);
-                   intent.putExtra("emaill",login);
+                    Intent intent=new Intent(connexion.this, accueil_tuni_demenager.class);
+                    intent.putExtra("id1",login);
+                    intent.putExtra("emaill",login);
                     intent.putExtra("pwd",login);
                     intent.putExtra("cin1",login);
                     intent.putExtra("age1",login);
@@ -108,24 +109,28 @@ public class connexion extends AppCompatActivity {
         Cursor cursor =db.rawQuery("SELECT _id,email,password,cin,age,tlf,nom_prenom FROM CLIENT where email = ? and password = ?",new String[]{email,password});
         if (cursor.getCount()>0){
             cursor.moveToFirst();
+            int id=cursor.getInt(0);
             String email1=cursor.getString(1);
             String pass=cursor.getString(2);
             int cin=cursor.getInt(3);
             int age=cursor.getInt(4);
             int tlf=cursor.getInt(5);
             String nom_prenom=cursor.getString(6);
+            SharedPreferences.Editor sp0= getSharedPreferences("id",MODE_PRIVATE).edit();
             SharedPreferences.Editor sp= getSharedPreferences("email1",MODE_PRIVATE).edit();
             SharedPreferences.Editor sp1= getSharedPreferences("pass",MODE_PRIVATE).edit();
             SharedPreferences.Editor sp2= getSharedPreferences("cin",MODE_PRIVATE).edit();
             SharedPreferences.Editor sp3= getSharedPreferences("age",MODE_PRIVATE).edit();
             SharedPreferences.Editor sp4= getSharedPreferences("tlf",MODE_PRIVATE).edit();
             SharedPreferences.Editor sp5= getSharedPreferences("nom_prenom",MODE_PRIVATE).edit();
+            sp0.putInt("id1",id);
             sp.putString("emaill",email1);
             sp1.putString("pwd",pass);
             sp2.putInt("cin1",cin);
             sp3.putInt("age1",age);
             sp4.putInt("tlf1",tlf);
             sp5.putString("nom_prenom1",nom_prenom);
+            sp0.apply();
             sp.apply();
             sp1.apply();
             sp2.apply();
@@ -135,9 +140,9 @@ public class connexion extends AppCompatActivity {
             cursor.close();
             return email1;
         }return null;
-    }
 
 
 
-}
+
+}}
 
