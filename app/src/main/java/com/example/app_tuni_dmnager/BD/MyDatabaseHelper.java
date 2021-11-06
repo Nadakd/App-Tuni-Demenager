@@ -1,5 +1,6 @@
 package com.example.app_tuni_dmnager.BD;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -12,6 +13,9 @@ import com.example.app_tuni_dmnager.Model.DEMANDE_DEVIS;
 import com.example.app_tuni_dmnager.Model.Demande_Demenagement;
 import com.example.app_tuni_dmnager.Model.Demenageur;
 import com.example.app_tuni_dmnager.Model.Devis;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class MyDatabaseHelper extends SQLiteOpenHelper  {
@@ -91,22 +95,28 @@ public class MyDatabaseHelper extends SQLiteOpenHelper  {
         return myDatabaseHelper;
     }
 
-    public void demandedemenagementListArray() {
+
+    @SuppressLint("Range")
+    public  void demandedemenagementListArray(int id1) {
         SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
 
-        try (Cursor result = sqLiteDatabase.rawQuery("select dem.Date ,dev.nom_prenom From DEMANDE_DEMENAGEMENT dem JOIN DEVIS dev ON dem.devisid = dev." + KEY_ROWID  , null)) {
-            if (result.getCount() != 0) {
-                while (result.moveToNext()) {
-                     int id = result.getInt(0);
-                    String Date = result.getString(1);
-                    String nomdem = result.getString(2);
+        String selectQuery = "";
+        selectQuery = "SELECT * FROM DEMANDE_DEMENAGEMENT dem,DEVIS dev WHERE dem.devisid =dev._id and dem.clientid="+id1;
+        Cursor cursor = sqLiteDatabase.rawQuery(selectQuery, null);
+           if (cursor.moveToFirst()) {
+                do {
+                    Demande_Demenagement dem = new Demande_Demenagement();
 
-                    Demande_Demenagement dem = new Demande_Demenagement(Date,nomdem);
-                    Demande_Demenagement.DemandeDemenagementArrayList.add(dem);
-                }
+                    dem.setDate(cursor.getString(cursor.getColumnIndex("Date")));
+                  dem.setNomdem(cursor.getString(cursor.getColumnIndex("nom_prenom")));
+                    dem.setTlfdem(cursor.getInt(cursor.getColumnIndex("tlfdem")));
+                  dem.DemandeDemenagementArrayList.add(dem);
+
+                }while (cursor.moveToNext());
             }
-        }
 
+
+        sqLiteDatabase.close();
 
     }
 
@@ -144,37 +154,43 @@ public class MyDatabaseHelper extends SQLiteOpenHelper  {
     }
 
 
-//-----------------------Liste demande devis
-DEMANDE_DEVIS dv = new DEMANDE_DEVIS();
-//"SELECT id,adresse_depart,code_postal_dep,ville_depart,etage_dep,ascenseur_dep,adresse_arrive,code_postal_arv,ville_arv,etage_arv,ascenseur_arv,distance,dm.nom_prenom,clientid FROM demande_devis dv ,demenageur dm WHERE dv.demenageur_id=dm.id
-    public void ListeDemandeDevis() {
+
+    //-----------------------Liste demande devis
+
+
+   @SuppressLint("Range")
+   public void ListeDemandeDevis(int id1) {
         SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+       String selectQuery = "";
+       selectQuery = "SELECT * FROM DEMANDE_DEVIS demande,DEMENAGEUR dem where demande.demenageur_id=dem._id and clientid="+id1;
+       Cursor cursor = sqLiteDatabase.rawQuery(selectQuery, null);
+       if (cursor.moveToFirst()) {
+           do {
+               DEMANDE_DEVIS dv = new DEMANDE_DEVIS();
+               dv.setAdresse_depart(cursor.getString(cursor.getColumnIndex("adresse_depart")));
+               dv.setCode_postal_dep(cursor.getInt(cursor.getColumnIndex("code_postal_dep")));
+               dv.setVille_depart(cursor.getString(cursor.getColumnIndex("ville_depart")));
+               dv.setEtage_dep(cursor.getString(cursor.getColumnIndex("etage_dep")));
+               dv.setAscenseur_dep(cursor.getString(cursor.getColumnIndex("Ascenseur_dep")));
+               dv.setAdresse_arrive(cursor.getString(cursor.getColumnIndex("adresse_arrive")));
+               dv.setCode_postal_arv(cursor.getInt(cursor.getColumnIndex("code_postal_arv")));
+               dv.setVille_arv(cursor.getString(cursor.getColumnIndex("ville_arv")));
+               dv.setEtage_arv(cursor.getString(cursor.getColumnIndex("etage_arv")));
+               dv.setAscenseur_arv(cursor.getString(cursor.getColumnIndex("Ascenseur_arv")));
+               dv.setDistance(cursor.getString(cursor.getColumnIndex("distance")));
+               dv.setNomprenomdem(cursor.getString(cursor.getColumnIndex("nom_prenom")));
+               dv.setTlfdem(cursor.getInt(cursor.getColumnIndex("tlf")));
+               dv.setEmail(cursor.getString(cursor.getColumnIndex("email")));
 
-        try (Cursor result = sqLiteDatabase.rawQuery("SELECT * FROM DEMANDE_DEVIS  ", null)) {
+               dv.demande_devisArrayList.add(dv);
 
-            if (result.getCount() != 0) {
-                while (result.moveToNext()) {
-                    int id = result.getInt(0);
-                    String adresse_depart = result.getString(1);
-                    int code_postal_dep = result.getInt(2);
-                    String ville_depart = result.getString(3);
-                    String etage_dep = result.getString(4);
-                    String ascenseur_dep = result.getString(5);
-                    String adresse_arrive = result.getString(6);
-                    int code_postal_arv = result.getInt(7);
-                    String ville_arv = result.getString(8);
-                    String etage_arv = result.getString(9);
-                    String ascenseur_arv = result.getString(10);
-                    String distance = result.getString(11);
+           }while (cursor.moveToNext());
+       }
 
-                    int clientid = result.getInt(12);
-                    DEMANDE_DEVIS dem = new DEMANDE_DEVIS(id,adresse_depart,code_postal_dep, ville_depart, etage_dep, ascenseur_dep, adresse_arrive, code_postal_arv, ville_arv, etage_arv, ascenseur_arv,distance,clientid);
-                    DEMANDE_DEVIS.demande_devisArrayList.add(dem);
-                }
-            }
-        }
-    }
 
+       sqLiteDatabase.close();
+
+   }
 
 
 
@@ -184,7 +200,7 @@ DEMANDE_DEVIS dv = new DEMANDE_DEVIS();
     public void ListDevis() {
         SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
 
-        try (Cursor result = sqLiteDatabase.rawQuery("SELECT * FROM " + TABLE5, null)) {
+        try (Cursor result = sqLiteDatabase.rawQuery("SELECT * FROM " + TABLE5 , null)) {
             if (result.getCount() != 0) {
                 while (result.moveToNext()) {
                     int id = result.getInt(0);
@@ -193,9 +209,9 @@ DEMANDE_DEVIS dv = new DEMANDE_DEVIS();
                     int tlfdem = result.getInt(3);
                     String villedep = result.getString(4);
                     String villearr = result.getString(5);
-                    int iclient = result.getInt(6);
+                    int idclient = result.getInt(6);
 
-                    Devis dem = new Devis(id,prix, nom_prenom, tlfdem, villedep, villearr,iclient);
+                    Devis dem = new Devis(id,prix, nom_prenom, tlfdem, villedep, villearr,idclient);
                     Devis.devisArrayList.add(dem);
                 }
             }

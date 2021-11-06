@@ -71,7 +71,7 @@ public class profil_client extends AppCompatActivity {
                 Toast.makeText(profil_client.this, "Updated Successfully!", Toast.LENGTH_SHORT).show();
 
                 //clientAdapter.notifyDataSetChanged();
-                refresh(view);
+
                 onResume();
 
 
@@ -80,15 +80,6 @@ public class profil_client extends AppCompatActivity {
         });
     }
 
-public void refresh(View view){
-        onRestart();
-}
-public void onRestart(){
-        super.onRestart();
-        Intent i=new Intent(profil_client.this,profil_client.class);
-        startActivity(i);
-        finish();
-}
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

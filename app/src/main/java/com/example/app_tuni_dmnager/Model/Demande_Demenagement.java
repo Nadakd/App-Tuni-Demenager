@@ -8,24 +8,19 @@ public class Demande_Demenagement {
     private int clientid;
     private int devisid;
     private String nomdem;
+    private int tlfdem;
 
-    public String getNomdem() {
-        return nomdem;
-    }
 
-    public void setNomdem(String nomdem) {
-        this.nomdem = nomdem;
-    }
+
 
     public static ArrayList<Demande_Demenagement> DemandeDemenagementArrayList = new ArrayList<>();
-    public static ArrayList<Devis> devisArrayList = new ArrayList<>();
 
 
-    public static Devis getdemForNom(String nomdem)
+    public static Demande_Demenagement getdemForId(int devisid)
     {
-        for (Devis dem : devisArrayList)
+        for (Demande_Demenagement dem : DemandeDemenagementArrayList)
         {
-            if(dem.getNom_prenom() == nomdem)
+            if(dem.getDevisid() == devisid)
                 return dem;
         }
 
@@ -37,15 +32,21 @@ public class Demande_Demenagement {
     }
 
 
-    public Demande_Demenagement(String date,String nomdem) {
+    public Demande_Demenagement(String date) {
 
-        Date = date;
-        nomdem = nomdem;
+        this.Date = date;
+
     }
     public Demande_Demenagement(int id, String date,int devisid) {
         this.id = id;
         Date = date;
         this.devisid = devisid;
+    }
+
+    public Demande_Demenagement(int id, String date) {
+        this.id = id;
+        Date = date;
+
     }
 
 
@@ -80,4 +81,21 @@ public class Demande_Demenagement {
     public void setDevisid(int devisid) {
         this.devisid = devisid;
     }
+
+    public String getNomdem() {
+        return nomdem;
+    }
+
+    public void setNomdem(String nomdem) {
+        this.nomdem = nomdem;
+    }
+
+    public int getTlfdem() {
+        return tlfdem;
+    }
+
+    public void setTlfdem(int tlfdem) {
+        this.tlfdem = tlfdem;
+    }
+
 }

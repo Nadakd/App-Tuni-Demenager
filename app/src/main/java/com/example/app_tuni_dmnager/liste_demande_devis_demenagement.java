@@ -31,7 +31,8 @@ public class liste_demande_devis_demenagement extends AppCompatActivity {
         ListView listdemandedevis = (ListView)findViewById(R.id.list_demande_devis);
         db=new MyDatabaseHelper(liste_demande_devis_demenagement.this);
         db=MyDatabaseHelper.instanceOfDatabase(this);
-        db.ListeDemandeDevis();
+        int clientid= getSharedPreferences("id",MODE_PRIVATE).getInt("id1",0);
+        db.ListeDemandeDevis(clientid);
         DEMANDE_DEVIS_Adapter demandeAdapter = new DEMANDE_DEVIS_Adapter(getApplicationContext(),DEMANDE_DEVIS.demande_devisArrayList);
         listdemandedevis.setAdapter(demandeAdapter);
 

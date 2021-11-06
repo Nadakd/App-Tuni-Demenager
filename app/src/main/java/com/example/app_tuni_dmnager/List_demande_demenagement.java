@@ -26,14 +26,14 @@ public class List_demande_demenagement extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_demande_demenagement);
 
-        ListView listdemandedemenagement = (ListView)findViewById(R.id.dem);
-        db=new MyDatabaseHelper(List_demande_demenagement.this);
-        db=MyDatabaseHelper.instanceOfDatabase(this);
+        ListView listdemandedemenagement = (ListView) findViewById(R.id.dem);
+        db = new MyDatabaseHelper(List_demande_demenagement.this);
+        db = MyDatabaseHelper.instanceOfDatabase(this);
+        int clientid= getSharedPreferences("id",MODE_PRIVATE).getInt("id1",0);
+        db.demandedemenagementListArray(clientid);
 
-        db.demandedemenagementListArray();
         Demande_demenagement_Adapter demandedemAdapter = new Demande_demenagement_Adapter(getApplicationContext(), Demande_Demenagement.DemandeDemenagementArrayList);
         listdemandedemenagement.setAdapter(demandedemAdapter);
-
 
         listdemandedemenagement.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

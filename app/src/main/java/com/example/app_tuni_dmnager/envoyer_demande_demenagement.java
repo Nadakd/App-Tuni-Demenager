@@ -44,7 +44,7 @@ public class envoyer_demande_demenagement extends AppCompatActivity {
 
                 MyDatabaseHelper myDB = new MyDatabaseHelper(envoyer_demande_demenagement.this);
                 myDB.envoyerdemendedem(date_dem.getText().toString().trim(),clientid,iddem);
-                Intent intent = new Intent(envoyer_demande_demenagement.this, envoyer_demande_demenagement.class);
+                Intent intent = new Intent(envoyer_demande_demenagement.this, List_demande_demenagement.class);
                 startActivity(intent);
             }
         });

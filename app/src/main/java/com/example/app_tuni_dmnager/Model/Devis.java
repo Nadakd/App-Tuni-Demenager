@@ -14,6 +14,9 @@ public class Devis {
     private int clientid;
     public static String Devis_EXTRA =  "devis";
 
+    public Devis() {
+
+    }
     public Devis(int prix, String nom_prenom, int tldem, String villedepart, String ville_arv, int clientid) {
         Prix = prix;
         this.nom_prenom = nom_prenom;

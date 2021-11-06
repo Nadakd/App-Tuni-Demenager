@@ -39,7 +39,7 @@ public class infodemenageur extends AppCompatActivity {
          selecteddem = Demenageur.getdemForID(passeddemID);
          MyDatabaseHelper myDatabaseHelper = MyDatabaseHelper.instanceOfDatabase(this);
       //   int id=selecteddem.getId();
-        text_nomprenom1.setText(selecteddem.getNom_prenom()+"  "+ String.valueOf(selecteddem.getId()));
+        text_nomprenom1.setText(selecteddem.getNom_prenom());
         text_num_tlf_dem1.setText(String.valueOf(selecteddem.getTlf()));
         Email_dem1.setText(selecteddem.getEmail());
         villedem1.setText(selecteddem.getVille());

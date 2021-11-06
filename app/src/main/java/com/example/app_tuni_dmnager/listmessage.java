@@ -55,7 +55,7 @@ public class listmessage extends AppCompatActivity {
         //Alerte
 
 
-
+        int clientid= getSharedPreferences("id",MODE_PRIVATE).getInt("id1",0);
 
         add_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,7 +68,8 @@ public class listmessage extends AppCompatActivity {
         id = new ArrayList<>();
         Sujet = new ArrayList<>();
         Contenu = new ArrayList<>();
-        displayData();
+
+        displayData(clientid);
         onResume();
         msgAdapter = new Message_Adapter(listmessage.this,this, id, Sujet, Contenu);
         recyclerView.setAdapter(msgAdapter);
@@ -82,9 +83,9 @@ public class listmessage extends AppCompatActivity {
 
 
 
-    public Cursor readAllDataMessage() {
+    public Cursor readAllDataMessage(int id1) {
         myDB = new MyDatabaseHelper(getApplicationContext());
-        String query = "SELECT * FROM MESSAGE";
+        String query = "SELECT * FROM MESSAGE where clientid="+id1;
         mDatabase = myDB.getReadableDatabase();
         Cursor cursor = null;
         if (mDatabase != null) {
@@ -94,9 +95,9 @@ public class listmessage extends AppCompatActivity {
     }
 
 
-    public void displayData(){
+    public void displayData(int id1){
 
-        Cursor cursor = readAllDataMessage();
+        Cursor cursor = readAllDataMessage(id1);
         if(cursor.getCount() == 0){
            Toast.makeText(this,"No Data",Toast.LENGTH_SHORT).show();
         }else{

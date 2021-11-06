@@ -51,10 +51,10 @@ public class list_devis  extends AppCompatActivity {
                         // TODO Auto-generated method stub
                         Intent devisIntent = new  Intent(getApplicationContext(), envoyer_demande_demenagement.class);
                         devisIntent.putExtra(Devis.Devis_EXTRA,selectedevis.getId());
+
                         switch (arg){
                              case 0 : startActivity(devisIntent) ; break ;
-                            case 1 : startActivity(new  Intent(getApplicationContext(), list_devis.class)) ; break ;
-
+                            case 1: startActivity(new  Intent(getApplicationContext(), list_devis.class)) ; break ;
                             default : Toast.makeText(list_devis.this,"Erreur", Toast.LENGTH_LONG).show();
                         }
                     }

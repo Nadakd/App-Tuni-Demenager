@@ -13,7 +13,7 @@
         <entry key="..\:/Users/korka/AndroidStudioProjects/APP_Tuni_Dmnager/app/src/main/res/layout/demande_demenagement.xml" value="0.1598731884057971" />
         <entry key="..\:/Users/korka/AndroidStudioProjects/APP_Tuni_Dmnager/app/src/main/res/layout/devis.xml" value="0.24094202898550723" />
         <entry key="..\:/Users/korka/AndroidStudioProjects/APP_Tuni_Dmnager/app/src/main/res/layout/empty.xml" value="0.21014492753623187" />
-        <entry key="..\:/Users/korka/AndroidStudioProjects/APP_Tuni_Dmnager/app/src/main/res/layout/envoyer_demande_demenagement.xml" value="0.24094202898550723" />
+        <entry key="..\:/Users/korka/AndroidStudioProjects/APP_Tuni_Dmnager/app/src/main/res/layout/envoyer_demande_demenagement.xml" value="0.1" />
         <entry key="..\:/Users/korka/AndroidStudioProjects/APP_Tuni_Dmnager/app/src/main/res/layout/envoyer_demande_devis_dem.xml" value="0.20244565217391305" />
         <entry key="..\:/Users/korka/AndroidStudioProjects/APP_Tuni_Dmnager/app/src/main/res/layout/envoyer_message.xml" value="0.264" />
         <entry key="..\:/Users/korka/AndroidStudioProjects/APP_Tuni_Dmnager/app/src/main/res/layout/ic_add.xml" value="0.2" />
@@ -30,6 +30,7 @@
         <entry key="..\:/Users/korka/AndroidStudioProjects/APP_Tuni_Dmnager/app/src/main/res/layout/list_demande_demenagement.xml" value="0.14266304347826086" />
         <entry key="..\:/Users/korka/AndroidStudioProjects/APP_Tuni_Dmnager/app/src/main/res/layout/list_devis.xml" value="0.19293478260869565" />
         <entry key="..\:/Users/korka/AndroidStudioProjects/APP_Tuni_Dmnager/app/src/main/res/layout/liste_demande_devis_demenagement.xml" value="0.17119565217391305" />
+        <entry key="..\:/Users/korka/AndroidStudioProjects/APP_Tuni_Dmnager/app/src/main/res/layout/listedemandedemenagementbydevis.xml" value="0.19067028985507245" />
         <entry key="..\:/Users/korka/AndroidStudioProjects/APP_Tuni_Dmnager/app/src/main/res/layout/listmessage.xml" value="0.21014492753623187" />
         <entry key="..\:/Users/korka/AndroidStudioProjects/APP_Tuni_Dmnager/app/src/main/res/layout/menu_client.xml" value="0.2" />
         <entry key="..\:/Users/korka/AndroidStudioProjects/APP_Tuni_Dmnager/app/src/main/res/layout/nada.xml" value="0.15534420289855072" />

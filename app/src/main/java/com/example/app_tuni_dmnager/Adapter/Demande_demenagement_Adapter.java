@@ -35,16 +35,14 @@ public class Demande_demenagement_Adapter  extends ArrayAdapter<Demande_Demenage
         Demande_Demenagement dems = getItem(position);
         if(convertView == null)
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_demande_demenagement, parent, false);
-       // TextView id = convertView.findViewById(R.id.id);
          TextView nom = convertView.findViewById(R.id.nom_dem);
-        //TextView tlf = convertView.findViewById(R.id.tlf_dem0);
-       // TextView email = convertView.findViewById(R.id.Email_dem0);
+         TextView tlf = convertView.findViewById(R.id.tlf_dem0);
         TextView date = convertView.findViewById(R.id.date_dem0);
-
-      //  id.setText(String.valueOf(id.getId()));
+        TextView id = convertView.findViewById(R.id.id);
+        id.setText(String.valueOf(id.getId()));
         date.setText(dems.getDate());
          nom.setText(dems.getNomdem());
-
+        tlf.setText(String.valueOf(dems.getTlfdem()));
 
         return convertView;
     }

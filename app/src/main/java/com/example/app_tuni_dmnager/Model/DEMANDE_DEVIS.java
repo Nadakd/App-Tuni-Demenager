@@ -3,6 +3,7 @@ package com.example.app_tuni_dmnager.Model;
 import java.util.ArrayList;
 
 public class DEMANDE_DEVIS {
+
     private int id;
     private String adresse_depart;
     private int code_postal_dep;
@@ -17,12 +18,12 @@ public class DEMANDE_DEVIS {
     private String distance;
     private int demenageur_id;
     private int clientid;
-    public Demenageur demenageur;
-
-    String nom1;
+    private String nomprenomdem;
+    private int tlfdem;
+    private String email;
 
     public static ArrayList<DEMANDE_DEVIS> demande_devisArrayList = new ArrayList<>();
-    public static String Demenageur_id_EXTRA =  "demdetails";
+
 
 
     public DEMANDE_DEVIS() {
@@ -49,13 +50,6 @@ public class DEMANDE_DEVIS {
 
 
 
-    public Demenageur getDemenageur() {
-        return demenageur;
-    }
-
-    public void setDemenageur(Demenageur demenageur) {
-        this.demenageur = demenageur;
-    }
 
     public int getId() {
         return id;
@@ -153,13 +147,28 @@ public class DEMANDE_DEVIS {
         this.distance = distance;
     }
 
-    public int getDemenageur_id() {
-        return demenageur_id;
+    public String getNomprenomdem() {
+        return nomprenomdem;
     }
 
-    public void setDemenageur_id(int demenageur_id) {
-        this.demenageur_id = demenageur_id;
+    public void setNomprenomdem(String nomprenomdem) {
+        this.nomprenomdem = nomprenomdem;
+    }
 
+    public int getTlfdem() {
+        return tlfdem;
+    }
+
+    public void setTlfdem(int tlfdem) {
+        this.tlfdem = tlfdem;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public int getClientid() {
