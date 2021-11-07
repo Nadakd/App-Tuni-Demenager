@@ -38,6 +38,7 @@ public class profil_client extends AppCompatActivity {
         email = (EditText)findViewById(R.id.newemail1);
         password = (EditText)findViewById(R.id.newPassword1);
        Button update = (Button)findViewById(R.id.modifier_profil);
+
         int id= getSharedPreferences("id",MODE_PRIVATE).getInt("id1",0);
         String emaill=getSharedPreferences("email1",MODE_PRIVATE).getString("emaill","");
         String pwd=getSharedPreferences("pass",MODE_PRIVATE).getString("pwd","");
@@ -69,12 +70,9 @@ public class profil_client extends AppCompatActivity {
                 String password1  = password.getText().toString().trim();
                 myDB.updateprofil(id,nom_prenom1,cin1,age1,tlf1,email1,password1);
                 Toast.makeText(profil_client.this, "Updated Successfully!", Toast.LENGTH_SHORT).show();
-
-                //clientAdapter.notifyDataSetChanged();
-
-                onResume();
-
-
+                Intent intent=new Intent(profil_client.this, connexion.class);
+                startActivity(intent);
+                finish();
 
             }
         });

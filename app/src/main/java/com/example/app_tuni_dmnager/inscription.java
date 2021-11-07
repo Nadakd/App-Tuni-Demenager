@@ -102,8 +102,8 @@ public class inscription extends AppCompatActivity {
                     return;
                 }
 
-          // verification sur email
-                // verification si le contenue de champs email confome au format de l'email
+               // verification sur email
+                // verification si le contenue de champs email conforme au format de l'email
                 // On déclare le pattern que l’on doit vérifier
                 Pattern p = Pattern.compile(".+@.+\\.[a-z]+") ;
                 // On déclare un matcher, qui comparera le pattern

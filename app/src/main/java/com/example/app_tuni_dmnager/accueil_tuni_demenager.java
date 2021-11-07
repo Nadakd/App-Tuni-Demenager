@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.Menu;
@@ -34,7 +35,7 @@ public class accueil_tuni_demenager  extends AppCompatActivity {
     Spinner ville_dem;
    ImageView imageView4;
     ImageView img_cam;
-
+    private SharedPreferences mPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

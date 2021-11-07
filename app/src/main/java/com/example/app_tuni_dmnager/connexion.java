@@ -25,7 +25,7 @@ public class connexion extends AppCompatActivity {
     EditText log, pass;
     String login,pwd;
     TextView inscription_cl;
-    MyDatabaseHelper db1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +35,6 @@ public class connexion extends AppCompatActivity {
         pass = (EditText) findViewById(R.id.password);
         Button connexion = (Button) findViewById(R.id.connexion);
         inscription_cl = (TextView) findViewById(R.id.inscription);
-        ImageView flech = (ImageView) findViewById(R.id.flech);
 
 
 
@@ -84,6 +83,7 @@ public class connexion extends AppCompatActivity {
                 if (null!=login) {
                     Toast.makeText(connexion.this, "Login Successfully", Toast.LENGTH_SHORT).show();
                     Intent intent=new Intent(connexion.this, accueil_tuni_demenager.class);
+                    //putExtra() ajoute des données étendues à l'intention.
                     intent.putExtra("id1",login);
                     intent.putExtra("emaill",login);
                     intent.putExtra("pwd",login);
@@ -116,6 +116,8 @@ public class connexion extends AppCompatActivity {
             int age=cursor.getInt(4);
             int tlf=cursor.getInt(5);
             String nom_prenom=cursor.getString(6);
+            //SharedPreferences.Editor dispose également d'une méthode commit() pour enregistrer les préférences de
+            //manière synchrone.
             SharedPreferences.Editor sp0= getSharedPreferences("id",MODE_PRIVATE).edit();
             SharedPreferences.Editor sp= getSharedPreferences("email1",MODE_PRIVATE).edit();
             SharedPreferences.Editor sp1= getSharedPreferences("pass",MODE_PRIVATE).edit();
@@ -130,6 +132,7 @@ public class connexion extends AppCompatActivity {
             sp3.putInt("age1",age);
             sp4.putInt("tlf1",tlf);
             sp5.putString("nom_prenom1",nom_prenom);
+            //La méthode apply() enregistre les préférences de manière asynchrone à partir du thread d'interface utilisateur.
             sp0.apply();
             sp.apply();
             sp1.apply();

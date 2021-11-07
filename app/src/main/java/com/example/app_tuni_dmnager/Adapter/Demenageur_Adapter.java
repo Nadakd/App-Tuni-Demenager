@@ -21,6 +21,7 @@ public class Demenageur_Adapter extends ArrayAdapter<Demenageur> {
 
         super(context,0, dems);
     }
+
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent)
@@ -31,7 +32,7 @@ public class Demenageur_Adapter extends ArrayAdapter<Demenageur> {
         TextView id = convertView.findViewById(R.id.id);
         TextView nom_prenom = convertView.findViewById(R.id.text_nomdem);
         TextView ville = convertView.findViewById(R.id.text_villedem);
-         id.setText(String.valueOf(id.getId()));
+        id.setText(String.valueOf(id.getId()));
         nom_prenom.setText(dems.getNom_prenom());
         ville.setText(dems.getVille());
 

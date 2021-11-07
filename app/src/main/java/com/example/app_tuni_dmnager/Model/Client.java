@@ -30,32 +30,6 @@ public class Client implements Serializable {
         this.Password = password;
     }
 
-    public Client(int id, String email, String password) {
-        this.id = id;
-        this.email = email;
-        this.Password = password;
-    }
-    public Client(int id,String nom_prenom,int cin, int age, int tlf, String email, String password) {
-        this.id = id;
-        this.nom_prenom = nom_prenom;
-        this.cin = cin;
-        this.age = age;
-        this.tlf = tlf;
-        this.email = email;
-        this.Password = password;
-    }
-    public Client(String nom_prenom, String civilité, String ville, int cin, int age, int tlf, String email, String password, String ConfirmPassword) {
-
-        this.nom_prenom = nom_prenom;
-        this.civilité = civilité;
-        this.ville = ville;
-        this.cin = cin;
-        this.age = age;
-        this.tlf = tlf;
-        this.email = email;
-        this.Password = password;
-        this.ConfirmPassword = ConfirmPassword;
-    }
 
     public int getId() {
         return id;

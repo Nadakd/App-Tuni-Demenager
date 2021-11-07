@@ -19,7 +19,6 @@ public class infodemenageur extends AppCompatActivity {
     TextView text_nomprenom1,text_num_tlf_dem1,Email_dem1,villedem1;
     Demenageur selecteddem;
 
-    MyDatabaseHelper db=new MyDatabaseHelper(infodemenageur.this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,12 +31,13 @@ public class infodemenageur extends AppCompatActivity {
         Email_dem1 = (TextView)findViewById(R.id.Email_dem1);
         villedem1 = (TextView)findViewById(R.id.villedem1);
 
-        //-------edit
+        //------- id de demenageur
 
          Intent previousIntent = getIntent();
          int passeddemID = previousIntent.getIntExtra(Demenageur.Demenageur_details_EXTRA, -1);
          selecteddem = Demenageur.getdemForID(passeddemID);
-         MyDatabaseHelper myDatabaseHelper = MyDatabaseHelper.instanceOfDatabase(this);
+        MyDatabaseHelper myDatabaseHelper = MyDatabaseHelper.instanceOfDatabase(this);
+
       //   int id=selecteddem.getId();
         text_nomprenom1.setText(selecteddem.getNom_prenom());
         text_num_tlf_dem1.setText(String.valueOf(selecteddem.getTlf()));

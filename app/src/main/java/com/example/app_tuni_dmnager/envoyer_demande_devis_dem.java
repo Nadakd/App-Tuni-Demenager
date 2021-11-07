@@ -24,9 +24,6 @@ public class envoyer_demande_devis_dem  extends AppCompatActivity {
 
     EditText dem_adr_dep_devis , dem_cdepos_dep, dem_adr_arr_devis,dem_cdepos_arr,distance;
     Spinner ville_dep_devis,ville_arr_devis,etage_dep,etage_arr,ascenseur_dep,ascenseur_arr ;
-
-    ArrayAdapter<String> adapter,adapter1;
-    ArrayList<String> listItems=new ArrayList<>();
     String dem_adr_dep_devis1;
     Integer dem_cdepos_dep1;
     String dem_adr_arr_devis1;
@@ -83,10 +80,13 @@ public class envoyer_demande_devis_dem  extends AppCompatActivity {
         ArrayAdapter adapter6= ArrayAdapter.createFromResource(this, R.array.choix_ascenseur, android.R.layout.simple_spinner_item);
         adapter6.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         ascenseur_arr.setAdapter(adapter6);
+
        //controle de saisie
+
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 ville_dep_devis1 = ville_dep_devis.getSelectedItem().toString();
                 ville_arr_devis1 = ville_arr_devis.getSelectedItem().toString();
                 etage_dep1 = etage_dep.getSelectedItem().toString();
@@ -132,7 +132,7 @@ public class envoyer_demande_devis_dem  extends AppCompatActivity {
                 int passeddemID = previousIntent.getIntExtra(Demenageur.Demenageur_details_EXTRA, -1);
                 Demenageur selecteddem = Demenageur.getdemForID(passeddemID);
                 int iddem=selecteddem.getId();
-                String nom=selecteddem.getNom_prenom();
+
          // insertion dans la base de donée
                 DemandeDevisDataSource myDB = new DemandeDevisDataSource(envoyer_demande_devis_dem.this);
                 myDB.envoyer_demande_devis(dem_adr_dep_devis1.trim(),Integer.valueOf(dem_cdepos_dep.getText().toString().trim()),ville_dep_devis1.trim(),etage_dep1.trim(),ascenseur_dep1.trim(),dem_adr_arr_devis1.trim(),Integer.valueOf(dem_cdepos_arr.getText().toString().trim()),ville_arr_devis1.trim(),etage_arr1.trim(),ascenseur_arr1.trim(),distance1.trim(),iddem,clientid);

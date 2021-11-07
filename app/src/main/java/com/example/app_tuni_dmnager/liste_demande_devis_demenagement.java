@@ -32,7 +32,9 @@ public class liste_demande_devis_demenagement extends AppCompatActivity {
         db=new MyDatabaseHelper(liste_demande_devis_demenagement.this);
         db=MyDatabaseHelper.instanceOfDatabase(this);
         int clientid= getSharedPreferences("id",MODE_PRIVATE).getInt("id1",0);
+
         db.ListeDemandeDevis(clientid);
+
         DEMANDE_DEVIS_Adapter demandeAdapter = new DEMANDE_DEVIS_Adapter(getApplicationContext(),DEMANDE_DEVIS.demande_devisArrayList);
         listdemandedevis.setAdapter(demandeAdapter);
 
@@ -46,28 +48,25 @@ public class liste_demande_devis_demenagement extends AppCompatActivity {
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        DEMANDE_DEVIS dv = DEMANDE_DEVIS.demande_devisArrayList.get(position);
-                        int sid = dv.getId();
-                        int result = db.deletedemandedevis(sid);
 
-                        if( result > 0)
-                        {
-                            Toast.makeText(liste_demande_devis_demenagement.this, "Demande deleted", Toast.LENGTH_SHORT).show();
-                            DEMANDE_DEVIS.demande_devisArrayList.remove(dv);
-                            demandeAdapter.notifyDataSetChanged();
-                        }
-                        else
-                        {
-                            Toast.makeText(liste_demande_devis_demenagement.this, "Something went wrong", Toast.LENGTH_SHORT).show();
-                        }
+                DEMANDE_DEVIS dv = DEMANDE_DEVIS.demande_devisArrayList.get(position);
+                int sid = dv.getId();
+                int result = db.deletedemandedevis(sid);
+                Toast.makeText(liste_demande_devis_demenagement.this, "Demande deleted", Toast.LENGTH_SHORT).show();
+                DEMANDE_DEVIS.demande_devisArrayList.remove(dv);
+                demandeAdapter.notifyDataSetChanged();
+
                     }
-        });
+                });
+
                 builder.setNegativeButton("No", null);
                 builder.show();
-
             }
         });
-    }
+
+            }
+
+
 
 
 

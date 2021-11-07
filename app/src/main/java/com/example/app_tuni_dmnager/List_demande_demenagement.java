@@ -44,28 +44,22 @@ public class List_demande_demenagement extends AppCompatActivity {
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Demande_Demenagement dv = Demande_Demenagement.DemandeDemenagementArrayList.get(position);
+                   Demande_Demenagement dv = Demande_Demenagement.DemandeDemenagementArrayList.get(position);
                         int sid = dv.getId();
                         int result = db.deletedemandedemanagement(sid);
 
-                        if( result > 0)
-                        {
-                            Toast.makeText(List_demande_demenagement.this, "Demande deleted", Toast.LENGTH_SHORT).show();
+
+                            Toast.makeText(List_demande_demenagement.this, "Demande demenagement deleted", Toast.LENGTH_SHORT).show();
                             Demande_Demenagement.DemandeDemenagementArrayList.remove(dv);
                             demandedemAdapter.notifyDataSetChanged();
-                        }
-                        else
-                        {
-                            Toast.makeText(List_demande_demenagement.this, "Something went wrong", Toast.LENGTH_SHORT).show();
-                        }
+
                     }
                 });
+
                 builder.setNegativeButton("No", null);
                 builder.show();
-
             }
         });
-
     }
 
 

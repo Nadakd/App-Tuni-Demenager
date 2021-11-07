@@ -26,7 +26,6 @@ public class list_devis  extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_devis);
         ListView listV = (ListView)findViewById(R.id.list_devis);
-        MyDatabaseHelper db=new MyDatabaseHelper(list_devis.this);
         DevisDataSource devis=new DevisDataSource(list_devis.this);
         devis.addDevis(150000,"rami said",20145785,"Tunis","Ariana",1);
         devis.addDevis(200000,"mahmoud amiri",20147852,"Nabeul","Sousse",1);
@@ -53,8 +52,10 @@ public class list_devis  extends AppCompatActivity {
                         devisIntent.putExtra(Devis.Devis_EXTRA,selectedevis.getId());
 
                         switch (arg){
+                            //envoyer demande de demenagement
                              case 0 : startActivity(devisIntent) ; break ;
-                            case 1: startActivity(new  Intent(getApplicationContext(), list_devis.class)) ; break ;
+                             //annuler
+                             case 1: startActivity(new  Intent(getApplicationContext(), list_devis.class)) ; break ;
                             default : Toast.makeText(list_devis.this,"Erreur", Toast.LENGTH_LONG).show();
                         }
                     }

@@ -73,54 +73,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper  {
 
 
 
-    public int deletedevis(int id) {
-
-        SQLiteDatabase db = this.getWritableDatabase();
-        return db.delete(TABLE5,KEY_ROWID +" =?",new String[]{String.valueOf(id)});
-
-    }
-    public int deletemsg(int id) {
-
-        SQLiteDatabase db = this.getWritableDatabase();
-        return db.delete(TABLE1,KEY_ROWID +" =?",new String[]{String.valueOf(id)});
-
-    }
-
-
-
-    public static MyDatabaseHelper instanceOfDatabase(Context context) {
-        if (myDatabaseHelper == null)
-            myDatabaseHelper = new MyDatabaseHelper(context);
-
-        return myDatabaseHelper;
-    }
-
-
-    @SuppressLint("Range")
-    public  void demandedemenagementListArray(int id1) {
-        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
-
-        String selectQuery = "";
-        selectQuery = "SELECT * FROM DEMANDE_DEMENAGEMENT dem,DEVIS dev WHERE dem.devisid =dev._id and dem.clientid="+id1;
-        Cursor cursor = sqLiteDatabase.rawQuery(selectQuery, null);
-           if (cursor.moveToFirst()) {
-                do {
-                    Demande_Demenagement dem = new Demande_Demenagement();
-
-                    dem.setDate(cursor.getString(cursor.getColumnIndex("Date")));
-                  dem.setNomdem(cursor.getString(cursor.getColumnIndex("nom_prenom")));
-                    dem.setTlfdem(cursor.getInt(cursor.getColumnIndex("tlfdem")));
-                  dem.DemandeDemenagementArrayList.add(dem);
-
-                }while (cursor.moveToNext());
-            }
-
-
-        sqLiteDatabase.close();
-
-    }
-
-    //-----------------Display
+    //-----------------Display list demenageur
 
     public void populateDemListArray() {
         SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
@@ -141,6 +94,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper  {
 
 
     }
+          // info demenageur by id
 
     public void DemListArraybyid(Demenageur dem) {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -154,48 +108,57 @@ public class MyDatabaseHelper extends SQLiteOpenHelper  {
     }
 
 
+    public static MyDatabaseHelper instanceOfDatabase(Context context) {
+        if (myDatabaseHelper == null)
+            myDatabaseHelper = new MyDatabaseHelper(context);
+
+        return myDatabaseHelper;
+    }
 
     //-----------------------Liste demande devis
 
 
-   @SuppressLint("Range")
-   public void ListeDemandeDevis(int id1) {
+    @SuppressLint("Range")
+    public void ListeDemandeDevis(int id1) {
         SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
-       String selectQuery = "";
-       selectQuery = "SELECT * FROM DEMANDE_DEVIS demande,DEMENAGEUR dem where demande.demenageur_id=dem._id and clientid="+id1;
-       Cursor cursor = sqLiteDatabase.rawQuery(selectQuery, null);
-       if (cursor.moveToFirst()) {
-           do {
-               DEMANDE_DEVIS dv = new DEMANDE_DEVIS();
-               dv.setAdresse_depart(cursor.getString(cursor.getColumnIndex("adresse_depart")));
-               dv.setCode_postal_dep(cursor.getInt(cursor.getColumnIndex("code_postal_dep")));
-               dv.setVille_depart(cursor.getString(cursor.getColumnIndex("ville_depart")));
-               dv.setEtage_dep(cursor.getString(cursor.getColumnIndex("etage_dep")));
-               dv.setAscenseur_dep(cursor.getString(cursor.getColumnIndex("Ascenseur_dep")));
-               dv.setAdresse_arrive(cursor.getString(cursor.getColumnIndex("adresse_arrive")));
-               dv.setCode_postal_arv(cursor.getInt(cursor.getColumnIndex("code_postal_arv")));
-               dv.setVille_arv(cursor.getString(cursor.getColumnIndex("ville_arv")));
-               dv.setEtage_arv(cursor.getString(cursor.getColumnIndex("etage_arv")));
-               dv.setAscenseur_arv(cursor.getString(cursor.getColumnIndex("Ascenseur_arv")));
-               dv.setDistance(cursor.getString(cursor.getColumnIndex("distance")));
-               dv.setNomprenomdem(cursor.getString(cursor.getColumnIndex("nom_prenom")));
-               dv.setTlfdem(cursor.getInt(cursor.getColumnIndex("tlf")));
-               dv.setEmail(cursor.getString(cursor.getColumnIndex("email")));
+        String selectQuery = "";
+        selectQuery = "SELECT * FROM DEMANDE_DEVIS demande,DEMENAGEUR dem where demande.demenageur_id=dem._id and clientid="+id1;
+        Cursor cursor = sqLiteDatabase.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()) {
+            do {
+                DEMANDE_DEVIS dv = new DEMANDE_DEVIS();
+                dv.setAdresse_depart(cursor.getString(cursor.getColumnIndex("adresse_depart")));
+                dv.setCode_postal_dep(cursor.getInt(cursor.getColumnIndex("code_postal_dep")));
+                dv.setVille_depart(cursor.getString(cursor.getColumnIndex("ville_depart")));
+                dv.setEtage_dep(cursor.getString(cursor.getColumnIndex("etage_dep")));
+                dv.setAscenseur_dep(cursor.getString(cursor.getColumnIndex("Ascenseur_dep")));
+                dv.setAdresse_arrive(cursor.getString(cursor.getColumnIndex("adresse_arrive")));
+                dv.setCode_postal_arv(cursor.getInt(cursor.getColumnIndex("code_postal_arv")));
+                dv.setVille_arv(cursor.getString(cursor.getColumnIndex("ville_arv")));
+                dv.setEtage_arv(cursor.getString(cursor.getColumnIndex("etage_arv")));
+                dv.setAscenseur_arv(cursor.getString(cursor.getColumnIndex("Ascenseur_arv")));
+                dv.setDistance(cursor.getString(cursor.getColumnIndex("distance")));
+                dv.setNomprenomdem(cursor.getString(cursor.getColumnIndex("nom_prenom")));
+                dv.setTlfdem(cursor.getInt(cursor.getColumnIndex("tlf")));
+                dv.setEmail(cursor.getString(cursor.getColumnIndex("email")));
+                dv.demande_devisArrayList.add(dv);
 
-               dv.demande_devisArrayList.add(dv);
-
-           }while (cursor.moveToNext());
-       }
-
-
-       sqLiteDatabase.close();
-
-   }
+            }while (cursor.moveToNext());
+        }
 
 
+        sqLiteDatabase.close();
+
+    }
 
 
+    public int deletedemandedevis(int id) {
 
+        db = this.getWritableDatabase();
+        return db.delete("DEMANDE_DEVIS","_id =?",new String[]{String.valueOf(id)});
+    }
+
+    //liste de devis
 
     public void ListDevis() {
         SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
@@ -211,12 +174,39 @@ public class MyDatabaseHelper extends SQLiteOpenHelper  {
                     String villearr = result.getString(5);
                     int idclient = result.getInt(6);
 
-                    Devis dem = new Devis(id,prix, nom_prenom, tlfdem, villedep, villearr,idclient);
+                    Devis dem = new Devis(id,prix,nom_prenom, tlfdem, villedep, villearr,idclient);
                     Devis.devisArrayList.add(dem);
                 }
             }
         }
     }
+
+//--------------liste de demenagement
+
+    @SuppressLint("Range")
+    public  void demandedemenagementListArray(int id1) {
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+
+        String selectQuery = "";
+        selectQuery = "SELECT * FROM DEMANDE_DEMENAGEMENT dem,DEVIS dev WHERE dem.devisid =dev._id and dem.clientid="+id1;
+        Cursor cursor = sqLiteDatabase.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()) {
+            do {
+                Demande_Demenagement dem = new Demande_Demenagement();
+                dem.setDate(cursor.getString(cursor.getColumnIndex("Date")));
+                dem.setNomdem(cursor.getString(cursor.getColumnIndex("nom_prenom")));
+                dem.setTlfdem(cursor.getInt(cursor.getColumnIndex("tlfdem")));
+                dem.DemandeDemenagementArrayList.add(dem);
+
+            }while (cursor.moveToNext());
+        }
+
+
+        sqLiteDatabase.close();
+
+    }
+//------------envoyer demande de demenagement
+
     public void envoyerdemendedem(String Date,int clientid,int devisid) {
 
         db = this.getWritableDatabase();
@@ -231,18 +221,40 @@ public class MyDatabaseHelper extends SQLiteOpenHelper  {
             Toast.makeText(context, "Added Successfully!", Toast.LENGTH_SHORT).show();
         }
     }
-
-    public int deletedemandedevis(int id) {
-
-        SQLiteDatabase db = this.getWritableDatabase();
-        return db.delete(TABLE3,KEY_ROWID +" =?",new String[]{String.valueOf(id)});
-    }
+//---------------------delete demande de demenagement
 
     public int deletedemandedemanagement(int id) {
 
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete(TABLE6,KEY_ROWID +" =?",new String[]{String.valueOf(id)});
     }
+
+    public int deletedevis(int id) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete(TABLE5,KEY_ROWID +" =?",new String[]{String.valueOf(id)});
+
+    }
+    public int deletemsg(int id) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete(TABLE1,KEY_ROWID +" =?",new String[]{String.valueOf(id)});
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
 

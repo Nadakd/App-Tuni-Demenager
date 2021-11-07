@@ -41,13 +41,8 @@ public class DemandeDevisDataSource {
         long result = db.insert("DEMANDE_DEVIS", null, cv);
 
     }
-    // -------------delete
 
-    public int deletedemandedevis(int id) {
 
-         db = dbHelper.getWritableDatabase();
-        return db.delete("DEMANDE_DEVIS","_id =?",new String[]{String.valueOf(id)});
-    }
 
 
 
